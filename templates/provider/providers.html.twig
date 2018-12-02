@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+{% block show_service %}
+    <div class="container-fluid">
+        <div class="col-md-10">
+
+            {% for provider in providers %}
+                <div class="col-md-4">
+                    <div class="maCard">
+                        <img class="providerImg"
+                             src="https://res.cloudinary.com/execftw/image/upload/v1542110758/man_2.png"/>
+                        <a class="providerLink"
+                           href="{{ path('provider_show', {'id': provider.id}) }}"> {{ provider.name }} </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block show_service %}
+    <div class="container-fluid">
+        <div class="d-flex justify-content-center">
+            <div class="d-flex flex-column">
+                <div class="col-md-10">
+                    <hr/>
+                    <h3>{{ provider.name }}</h3>
+                    <hr/>
+
+                    <div class="col-md-3">
+                        {% if provider.logo|length > 0 %}
+                            {% for logo in provider.logo %}
+                                <img src="{{ logo }}"/>
+                            {% endfor %}
+                        {% else %}
+                            <img src="https://res.cloudinary.com/execftw/image/upload/v1542100690/no_picture.png"/>
+                        {% endif %}
+                    </div>
+
+                    <div class="col-md-3">
+
+                        <h3><u>Rue</u> :</h3><h4>{{ provider.street }} {{ provider.number }}</h4>
+                        <h3><u>Email Pro</u> :</h3> <h4>{{ provider.emailprovider }}</h4>
+                        <h3><u>Email</u> :</h3><h4>{{ provider.email }}</h4>
+                    </div>
+                    <div class="col-md-3">
+
+                        <h3><u>Date d'inscription</u> : </h3><h4>{{ provider.registrationDate|date("d/m/y") }}</h4>
+                        <h3><u>Tel</u> : </h3> <h4>{{ provider.telnumber }}</h4>
+                        <h3><u>Num TVA</u> :</h3><h4>{{ provider.tvanumber }}</h4>
+                    </div>
+                        <div class="col-md-3">
+                        <h3><u>Site Web</u> :</h3><h4>{{ provider.website }}</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-10">
+                    <hr/>
+                    <h3>Pictures</h3>
+                    <hr/>
+                    {% for photo in provider.photo %}
+                        <div class="col-md-3">
+                            <img src="{{ photo }}"/>
+                        </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+{% endblock %}
