@@ -14,8 +14,8 @@ final class Version20181022172044 extends AbstractMigration
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
-
         $this->addSql('ALTER TABLE user DROP type');
+        $this->addSql('ALTER TABLE user ADD type VARCHAR(255) NOT NULL COLLATE utf8mb4_unicode_ci');
     }
 
     public function down(Schema $schema) : void

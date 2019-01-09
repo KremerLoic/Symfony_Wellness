@@ -7,8 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @ORM\InheritanceType("JOINED")
- * @ORM\DiscriminatorColumn(name="userType", type="string")
- * @ORM\DiscriminatorMap({"provider" = "Provider"})
+ * @ORM\DiscriminatorColumn(name="type", type="string")
+ * @ORM\DiscriminatorMap({ "provider" = "Provider"})
  */
  abstract class User
                   {

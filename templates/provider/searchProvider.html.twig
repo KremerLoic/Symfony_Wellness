@@ -1,19 +1,22 @@
 {% extends 'base.html.twig' %}
 {% block show_service %}
-<div class="container-fluid">
-    <h1 class="center"><a href="{{ path('all_providers')}}"> Retour à la liste des prestataires</a></h1>
-    <div class="col-md-10">
-        <br/>
-        {% for provider in provider %}
-            <div class="col-md-4">
-                <div class="maCard">
-                    <img class="providerImg"
-                         src="https://res.cloudinary.com/execftw/image/upload/v1542110758/man_2.png"/>
-                    <a class="providerLink"
-                       href="{{ path('provider_show', {'id': provider.id}) }}"> {{ provider.name }} </a>
+    <div class="container-fluid">
+        <h1 class="center"><a href="{{ path('all_providers') }}"> Retour à la liste des prestataires</a></h1>
+        <div class="col-md-10">
+            <br/>
+            {% for provider in providers %}
+                <div class="col-md-4">
+                    <div class="maCard">
+                        <img class="providerImg"
+                             src="https://res.cloudinary.com/execftw/image/upload/v1542110758/man_2.png"/>
+                        <a class="providerLink"
+                           href="{{ path('provider_show', {'id': provider.id}) }}"> {{ provider.name }} </a>
+                    </div>
                 </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
+        </div>
+        <div class="navigation">
+            {{ knp_pagination_render(providers) }}
+        </div>
     </div>
-</div>
 {% endblock %}

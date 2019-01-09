@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Provider;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -20,32 +21,59 @@ class ProviderRepository extends ServiceEntityRepository
     }
 
     /**
-     * @param $name
      * @return Provider[]
      */
-    public function findProviderByName($request)
-    {
+    public function findByNameCpService($searchName,$searchLocality,$searchService){
 
-        $qb = $this->createQueryBuilder('p')
+        $qb = $this->createQueryBuilder('p');
 
+        $qb->leftJoin('p.photo','photo');
+        $qb->addSelect('photo');
 
-           ->andWhere('p.name = :name')
-                ->setParameter('name', $request)
-                ->getQuery();
+        $qb->leftJoin('p.logo','logo');
+        $qb->addSelect('logo');
 
-        return $qb->getResult();
+        if($searchName !== ''){
+            $qb->andWhere('p.name LIKE :value');
+            $qb->setParameter('value', '%'.$searchName.'%');
+        }
 
+        if($searchService !== ''){
+            $qb->leftJoin('p.services', 'services');
+            $qb->addSelect('services');
+            $qb->andWhere('services.name LIKE :value');
+            $qb->setParameter('value', '%'.$searchService.'%' );
+        }
+
+        if($searchLocality !== ''){
+            $qb->leftJoin('p.locality', 'locality');
+            $qb->addSelect('locality');
+            $qb->andWhere('locality.locality LIKE :value');
+            $qb->setParameter('value', '%'.$searchLocality.'%');
+        }
+
+        $result = $qb->getQuery()->getResult();
+        return $result;
 
 
 
     }
 
-    public function findProviderByLocality($locality)
-    {
-        $qb = $this->createQueryBuilder('l')
-            ->andWhere('l.locality = :locality')
-            ->setParameter('locality',$locality)
-            ->getQuery();
-        return $qb->getResult();
+
+
+    public function findAllProviders(){
+        $qb = $this->createQueryBuilder('p');
+
+            $qb->leftJoin('p.photo','photo');
+            $qb->addSelect('photo');
+
+            $qb->leftJoin('p.logo','logo');
+            $qb->addSelect('logo');
+
+            $result= $qb->getQuery()->getResult();
+            return  $result;
+
+
     }
+
 }

@@ -11,28 +11,37 @@ namespace App\Controller;
 
 use App\Entity\Locality;
 use App\Entity\Provider;
+use App\Repository\ProviderRepository;
+use Doctrine\Common\Persistence\ObjectManager;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Flex\Response;
 
 class ProviderController extends AbstractController
 {
 
-
     /**
      * @Route("/providers", name="all_providers")
      */
-    public function AllProviders(){
-        $repository = $this->getDoctrine()->getRepository( Provider::class);
-        $providers = $repository->findAll();
+    public function index(PaginatorInterface $paginator, Request $request){
 
+        $repository = $this->getDoctrine()->getRepository(Provider::class);
+
+        $providers = $paginator->paginate(
+            $repository->findAllProviders(),
+            $request->query->getInt('page',1),
+            6
+        );
 
 
         return $this->render('provider/providers.html.twig',[
             'providers' => $providers
-
         ]);
+
     }
+
 
     public function SearchProvidersList()
     {
@@ -44,49 +53,6 @@ class ProviderController extends AbstractController
         ]);
 
     }
-
-    /**
-     * @param $name
-     * @Route("/provider/search/", name="searchProviders")
-     */
-    public function SearchProviderByName(Request $request)
-    {
-
-
-        $provider = $request->request->get('searchSelectName');
-
-
-            $provider = $this->getDoctrine()
-                ->getRepository(Provider::class)
-                ->findProviderByName($provider);
-
-
-
-
-
-
-
-        return  $this->render('provider/searchProvider.html.twig', [
-            'provider' => $provider,
-
-        ]);
-
-    }
-
-
-    public function SearchLocalitiesList()
-    {
-
-     $repository = $this->getDoctrine()->getRepository(Locality::class);
-     $localities = $repository->findAll();
-
-     return $this->render('provider/searchLocalitiesList.html.twig', [
-         'localities' => $localities
-     ]);
-
-
-    }
-
 
 
     /**

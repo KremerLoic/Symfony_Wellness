@@ -96,34 +96,45 @@
         <div class="widget">
 
             <div class="col-md-2">
-                    <h2 class="widgettitle">Search</h2>
-                    <form method="post" action="{{ path('searchProviders') }}">
-                    <label for="id_label_single">
-                        <h4> Nom :  </h4>
+                <h2 class="widgettitle">Search</h2>
+                <form method="GET" action="{{ path('searchProviders') }}">
+                    <label for="SelectName">
+                        <h4> Nom : </h4>
                     </label>
-                        <select class="js-example-basic-single js-states form-control" id="id_label_single"
-                                name="searchSelectName">
-                            <option>
-                                {{ render(controller(
-                                'App\\Controller\\ProviderController::SearchProvidersList'
-                                )) }}
-                            </option>
-                        </select>
+                    <select class="js-example-basic-single js-states form-control" id="id_label_single"
+                            name="name">
+                        <option>
+                            {{ render(controller(
+                            'App\\Controller\\ProviderController::SearchProvidersList'
+                            )) }}
+                        </option>
+                    </select>
 
-                            <label for="id_label_single">
-                                <h4> Localité : </h4>
-                            </label>
-                            <select class="js-example-basic-single js-states form-control" id="id_label_single2"
-                                    name="searchSelectLocality">
-                                <option>
-                                    {{ render(controller(
-                                    'App\\Controller\\ProviderController::SearchLocalitiesList'
-                                    )) }}
-                                </option>
-                            </select>
-                        <hr/>
-                        <button type="submit" class="btn btn-success" name="searchButton">Search</button>
-                    </form>
+                    <label for="SelectLocality">
+                        <h4> Localité : </h4>
+                    </label>
+                    <select class="js-example-basic-single js-states form-control" id="id_label_single2"
+                            name="locality">
+                        <option>
+                            {{ render(controller(
+                            'App\\Controller\\CityController::SearchLocalitiesList'
+                            )) }}
+                        </option>
+                    </select>
+                    <label for="SelectService">
+                        <h4> Services: : </h4>
+                    </label>
+                    <select class="js-example-basic-single js-states form-control" id="id_label_single3"
+                            name="service">
+                        <option>
+                            {{ render(controller(
+                            'App\\Controller\\ServiceController::SearchServicesList'
+                            )) }}
+                        </option>
+                    </select>
+                    <hr/>
+                    <button type="submit" class="btn btn-success" name="searchButton">Search</button>
+                </form>
 
 
                 <h2 class="widgettitle">Services</h2>

@@ -49,12 +49,18 @@ class Provider extends User
      */
     private $logo;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Services", mappedBy="Proposer")
+     */
+    private $services;
+
 
 
     public function __construct()
     {
         $this->photo = new ArrayCollection();
         $this->logo = new ArrayCollection();
+        $this->services = new ArrayCollection();
     }
 
 
@@ -177,6 +183,34 @@ class Provider extends User
             if ($logo->getLogoProvider() === $this) {
                 $logo->setLogoProvider(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Services[]
+     */
+    public function getServices(): Collection
+    {
+        return $this->services;
+    }
+
+    public function addService(Services $service): self
+    {
+        if (!$this->services->contains($service)) {
+            $this->services[] = $service;
+            $service->addProposer($this);
+        }
+
+        return $this;
+    }
+
+    public function removeService(Services $service): self
+    {
+        if ($this->services->contains($service)) {
+            $this->services->removeElement($service);
+            $service->removeProposer($this);
         }
 
         return $this;

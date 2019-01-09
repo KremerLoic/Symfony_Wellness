@@ -6,6 +6,7 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "cloudinary/cloudinary_php": "^1.12",
+        "knplabs/knp-paginator-bundle": "^2.8",
         "sensio/framework-extra-bundle": "^5.2",
         "symfony/asset": "*",
         "symfony/console": "*",
@@ -15,6 +16,7 @@
         "symfony/framework-bundle": "*",
         "symfony/maker-bundle": "^1.7",
         "symfony/orm-pack": "^1.0",
+        "symfony/translation": "*",
         "symfony/twig-bundle": "*",
         "symfony/yaml": "*"
     },
@@ -66,7 +68,7 @@
     "extra": {
         "symfony": {
             "allow-contrib": false,
-            "require": "4.1.*"
+            "require": "4.*.*"
         }
     }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -40,6 +42,21 @@ class Services
      * @ORM\Column(type="boolean")
      */
     private $is_valid;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Provider", inversedBy="services")
+     */
+    private $Proposer;
+
+    public function __toString()
+    {
+        return $this->name;
+    }
+
+    public function __construct()
+    {
+        $this->Proposer = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -102,6 +119,32 @@ class Services
     public function setIsValid(bool $is_valid): self
     {
         $this->is_valid = $is_valid;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Provider[]
+     */
+    public function getProposer(): Collection
+    {
+        return $this->Proposer;
+    }
+
+    public function addProposer(Provider $proposer): self
+    {
+        if (!$this->Proposer->contains($proposer)) {
+            $this->Proposer[] = $proposer;
+        }
+
+        return $this;
+    }
+
+    public function removeProposer(Provider $proposer): self
+    {
+        if ($this->Proposer->contains($proposer)) {
+            $this->Proposer->removeElement($proposer);
+        }
 
         return $this;
     }
