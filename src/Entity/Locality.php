@@ -33,6 +33,11 @@ class Locality
         $this->Adresse_Locality = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->locality;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

@@ -33,6 +33,11 @@ class ZipCode
         $this->Adresse_CP = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->zipcode;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

@@ -17,7 +17,7 @@ class ServiceController extends AbstractController
         $repository = $this->getDoctrine()->getRepository(Services::class);
         $services = $repository->findAll();
 
-        return $this->render('service/login.html.twig', [
+        return $this->render('service/index.html.twig', [
             'services' => $services
         ]);
 
