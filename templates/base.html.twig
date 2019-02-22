@@ -6,8 +6,9 @@
     {% block stylesheets %}
 
         <link href="http://fonts.googleapis.com/css?family=Nunito:300,400,700" rel="stylesheet" type="text/css">
-        <link href="{{ asset('assets/libraries/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet"
-              type="text/css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+              integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+              crossorigin="anonymous">
         <link href="{{ asset('assets/libraries/owl.carousel/assets/owl.carousel.css') }}" rel="stylesheet"
               type="text/css">
         <link href="{{ asset('assets/libraries/colorbox/example1/colorbox.css') }}" rel="stylesheet" type="text/css">
@@ -24,57 +25,50 @@
 </head>
 <body>
 {% block header %}
-<div class="page-wrapper">
-    <header class="header">
-        <div class="header-wrapper">
-            <div class="container">
-                <div class="header-inner">
-                    <div class="header-logo">
-                        <a href="../index">
-                            <span>Relaxation</span>
-                        </a>
-                    </div><!-- /.header-logo -->
+    <div class="page-wrapper">
+        <header class="header">
+            <div class="header-wrapper">
+                <div class="container">
+                    <div class="header-inner">
+                        <div class="header-logo">
+                            <a href="../index">
+                                <span>Relaxation</span>
+                            </a>
+                        </div><!-- /.header-logo -->
 
-                    <div class="header-content">
-                        <div class="header-top">
-                            <div class="header-search">
-                                <input type="text" class="form-control" placeholder="Search for...">
-                            </div><!-- /.header-search -->
+                        <div class="header-content">
+                            <div class="header-top">
 
-                            <ul class="header-nav-social social-links nav nav-pills">
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                            </ul><!-- /.header-nav-social -->
 
-                            <ul class="header-nav-secondary nav nav-pills">
-                                <li><a href="{{ path('login') }}">Login</a></li>
-                                <li><a href="{{ path('register') }}">Register</a></li>
-                            </ul>
+                                <ul class="header-nav-secondary nav nav-pills">
+                                    {% if is_granted('ROLE_PROVIDER') %}
+                                        <li><a href="{{ path('stageAdd') }}">Ajouter un stage</a></li>
+                                    {% endif %}
+                                    {% if is_granted('ROLE_USER') %}
+                                        <li><a href="{{ path('profile') }}">{{ app.user.name }}</a></li>
+                                        <li><a href="{{ path('logout') }}">Se déconnecter</a></li>
+                                    {% else %}
+                                        <li><a href="{{ path('app_login') }}">Login</a></li>
+                                        <li><a href="{{ path('register') }}">Register</a></li>
+                                    {% endif %}
+                                </ul>
                         </div><!-- /.header-top -->
 
+
                         <div class="header-bottom">
-                            <div class="header-action">
-                                <a href="listing-submit.html" class="header-action-inner" title="Add Listing"
-                                   data-toggle="tooltip" data-placement="bottom">
-                                    <i class="fa fa-plus"></i>
-                                </a><!-- /.header-action-inner -->
-                            </div><!-- /.header-action -->
-
                             <ul class="header-nav-primary nav nav-pills collapse navbar-collapse">
+                                <li><a href="{{ path('index') }}">Accueil</a></li>
+                                <li><a href="{{ path('all_providers') }}">Providers</a></li>
+                                <li><a href="{{ path('stages') }}">Stages</a></li>
                                 <li>
-
                                     <a href="#"> Services <i class="fa fa-chevron-down"></i></a>
                                     <ul class="sub-menu">
                                         {{ render(controller(
                                         'App\\Controller\\ServiceController::AllServices'
                                         )) }}
-
                                     </ul>
                                 </li>
-
                             </ul>
-
                             <button class="navbar-toggle collapsed" type="button" data-toggle="collapse"
                                     data-target=".header-nav-primary">
                                 <span class="sr-only">Toggle navigation</span>
@@ -87,182 +81,182 @@
                     </div><!-- /.header-content -->
                 </div><!-- /.header-inner -->
             </div><!-- /.container -->
-        </div><!-- /.header-wrapper -->
+    </div><!-- /.header-wrapper -->
     </header><!-- /.header -->
-    {% endblock %}
+{% endblock %}
 
 
-    {% block menu %}
-        <div class="widget">
+{% block menu %}
+    <div class="widget">
 
-            <div class="col-md-2">
-                <h2 class="widgettitle">Search</h2>
-                <form method="GET" action="{{ path('searchProviders') }}">
-                    <label for="SelectName">
-                        <h4> Nom : </h4>
-                    </label>
-                    <select class="js-example-basic-single js-states form-control" id="id_label_single"
-                            name="name">
-                        <option>
-                            {{ render(controller(
-                            'App\\Controller\\ProviderController::SearchProvidersList'
-                            )) }}
-                        </option>
-                    </select>
+        <div class="col-md-2">
+            <h2 class="widgettitle">Search</h2>
+            <form method="GET" action="{{ path('searchProviders') }}">
+                <label for="SelectName">
+                    <h4> Nom : </h4>
+                </label>
+                <select class="js-example-basic-single js-states form-control" id="id_label_single"
+                        name="name">
+                    <option>
+                        {{ render(controller(
+                        'App\\Controller\\ProviderController::SearchProvidersList'
+                        )) }}
+                    </option>
+                </select>
 
-                    <label for="SelectLocality">
-                        <h4> Localité : </h4>
-                    </label>
-                    <select class="js-example-basic-single js-states form-control" id="id_label_single2"
-                            name="locality">
-                        <option>
-                            {{ render(controller(
-                            'App\\Controller\\CityController::SearchLocalitiesList'
-                            )) }}
-                        </option>
-                    </select>
-                    <label for="SelectService">
-                        <h4> Services: : </h4>
-                    </label>
-                    <select class="js-example-basic-single js-states form-control" id="id_label_single3"
-                            name="service">
-                        <option>
-                            {{ render(controller(
-                            'App\\Controller\\ServiceController::SearchServicesList'
-                            )) }}
-                        </option>
-                    </select>
-                    <hr/>
-                    <button type="submit" class="btn btn-success" name="searchButton">Search</button>
-                </form>
+                <label for="SelectLocality">
+                    <h4> Localité : </h4>
+                </label>
+                <select class="js-example-basic-single js-states form-control" id="id_label_single2"
+                        name="locality">
+                    <option>
+                        {{ render(controller(
+                        'App\\Controller\\CityController::SearchLocalitiesList'
+                        )) }}
+                    </option>
+                </select>
+                <label for="SelectService">
+                    <h4> Services: : </h4>
+                </label>
+                <select class="js-example-basic-single js-states form-control" id="id_label_single3"
+                        name="service">
+                    <option>
+                        {{ render(controller(
+                        'App\\Controller\\ServiceController::SearchServicesList'
+                        )) }}
+                    </option>
+                </select>
+                <hr/>
+                <button type="submit" class="btn btn-success" name="searchButton">Search</button>
+            </form>
 
 
-                <h2 class="widgettitle">Services</h2>
-                <ul class="menu">
-                    {{ render(controller(
-                    'App\\Controller\\ServiceController::AllServices'
-                    )) }}
-                </ul>
+            <h2 class="widgettitle">Services</h2>
+            <ul class="menu">
+                {{ render(controller(
+                'App\\Controller\\ServiceController::AllServices'
+                )) }}
+            </ul>
 
-            </div>
         </div>
+    </div>
 
-    {% endblock %}
-
-
-
-
-    {% block show_service %}{% endblock %}
-    {% block body %}{% endblock %}
-    {% block footer %}
-
-        <footer class="footer">
-            <div class="footer-top">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <h2>About Superlist</h2>
-
-                            <p>Superlist is directory template built upon Bootstrap and SASS to bring great
-                                experience
-                                in creation of directory.</p>
-                        </div><!-- /.col-* -->
-
-                        <div class="col-sm-4">
-                            <h2>Contact Information</h2>
-
-                            <p>
-                                Your Street 123, Melbourne, Australia<br>
-                                +1-123-456-789, <a href="#">sample@example.com</a>
-                            </p>
-                        </div><!-- /.col-* -->
-
-                        <div class="col-sm-4">
-                            <h2>Stay Connected</h2>
-
-                            <ul class="social-links nav nav-pills">
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                                <li><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
-                            </ul><!-- /.header-nav-social -->
-                        </div><!-- /.col-* -->
-                    </div><!-- /.row -->
-                </div><!-- /.container -->
-            </div><!-- /.footer-top -->
-
-
-            <div class="footer-bottom">
-                <div class="container">
-                    <div class="footer-bottom-left">
-                        &copy; 2015 All rights reserved. Created by <a href="#">Aviators</a>.
-                    </div><!-- /.footer-bottom-left -->
-
-                    <div class="footer-bottom-right">
-                        <ul class="nav nav-pills">
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="pricing.html">Pricing</a></li>
-                            <li><a href="terms-conditions.html">Terms &amp; Conditions</a></li>
-                            <li><a href="contact-1.html">Contact</a></li>
-                        </ul><!-- /.nav -->
-                    </div><!-- /.footer-bottom-right -->
-                </div><!-- /.container -->
-            </div>
-        </footer><!-- /.footer -->
+{% endblock %}
 
 
 
-    {% endblock %}
 
-    {% block javascripts %}
-        <script src="{{ asset('assets/js/jquery.js') }}" type="text/javascript"></script>
-        <script src="{{ asset('assets/js/map.js') }}" type="text/javascript"></script>
+{% block show_service %}{% endblock %}
+{% block body %}{% endblock %}
+{% block footer %}
 
-        <script src="{{ asset('assets/libraries/bootstrap-sass/javascripts/bootstrap/collapse.js') }}"
-                type="text/javascript"></script>
-        <script src="{{ asset('assets/libraries/bootstrap-sass/javascripts/bootstrap/carousel.js') }}"
-                type="text/javascript"></script>
-        <script src="{{ asset('assets/libraries/bootstrap-sass/javascripts/bootstrap/transition.js') }}"
-                type="text/javascript"></script>
-        <script src="{{ asset('assets/libraries/bootstrap-sass/javascripts/bootstrap/dropdown.js') }}"
-                type="text/javascript"></script>
-        <script src="{{ asset('assets/libraries/bootstrap-sass/javascripts/bootstrap/tooltip.js') }}"
-                type="text/javascript"></script>
-        <script src="{{ asset('assets/libraries/bootstrap-sass/javascripts/bootstrap/tab.js') }}"
-                type="text/javascript"></script>
-        <script src="{{ asset('assets/libraries/bootstrap-sass/javascripts/bootstrap/alert.js') }}"
-                type="text/javascript"></script>
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <h2>About Superlist</h2>
 
-        <script src="{{ asset('assets/libraries/colorbox/jquery.colorbox-min.js') }}"
-                type="text/javascript"></script>
+                        <p>Superlist is directory template built upon Bootstrap and SASS to bring great
+                            experience
+                            in creation of directory.</p>
+                    </div><!-- /.col-* -->
 
-        <script src="{{ asset('assets/libraries/flot/jquery.flot.min.js') }}" type="text/javascript"></script>
-        <script src="{{ asset('assets/libraries/flot/jquery.flot.spline.js') }}" type="text/javascript"></script>
+                    <div class="col-sm-4">
+                        <h2>Contact Information</h2>
 
-        <script src="{{ asset('assets/libraries/bootstrap-select/bootstrap-select.min.js') }}"
-                type="text/javascript"></script>
+                        <p>
+                            Your Street 123, Melbourne, Australia<br>
+                            +1-123-456-789, <a href="#">sample@example.com</a>
+                        </p>
+                    </div><!-- /.col-* -->
 
-        <script src="http://maps.googleapis.com/maps/api/js?libraries=weather,geometry,visualization,places,drawing&amp;sensor=false"
-                type="text/javascript"></script>
+                    <div class="col-sm-4">
+                        <h2>Stay Connected</h2>
 
-        <script type="text/javascript" src="{{ asset('assets/libraries/jquery-google-map/infobox.js') }}"></script>
-        <script type="text/javascript"
-                src="{{ asset('assets/libraries/jquery-google-map/markerclusterer.js') }}"></script>
-        <script type="text/javascript"
-                src="{{ asset('assets/libraries/jquery-google-map/jquery-google-map.js') }}"></script>
+                        <ul class="social-links nav nav-pills">
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                            <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                            <li><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
+                        </ul><!-- /.header-nav-social -->
+                    </div><!-- /.col-* -->
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </div><!-- /.footer-top -->
 
-        <script type="text/javascript" src="{{ asset('assets/libraries/owl.carousel/owl.carousel.js') }}"></script>
-        <script type="text/javascript"
-                src="{{ asset('assets/libraries/bootstrap-fileinput/fileinput.min.js') }}"></script>
 
-        <script src="{{ asset('assets/js/superlist.js') }}" type="text/javascript"></script>
-        <script src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js') }}"></script>
-        <script src="{{ asset('assets/js/select2.js') }}" type="text/javascript"></script>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-bottom-left">
+                    &copy; 2015 All rights reserved. Created by <a href="#">Aviators</a>.
+                </div><!-- /.footer-bottom-left -->
 
-    {% endblock %}
+                <div class="footer-bottom-right">
+                    <ul class="nav nav-pills">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="terms-conditions.html">Terms &amp; Conditions</a></li>
+                        <li><a href="contact-1.html">Contact</a></li>
+                    </ul><!-- /.nav -->
+                </div><!-- /.footer-bottom-right -->
+            </div><!-- /.container -->
+        </div>
+    </footer><!-- /.footer -->
+
+
+
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('assets/js/jquery.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/js/map.js') }}" type="text/javascript"></script>
+
+    <script src="{{ asset('assets/libraries/bootstrap-sass/javascripts/bootstrap/collapse.js') }}"
+            type="text/javascript"></script>
+    <script src="{{ asset('assets/libraries/bootstrap-sass/javascripts/bootstrap/carousel.js') }}"
+            type="text/javascript"></script>
+    <script src="{{ asset('assets/libraries/bootstrap-sass/javascripts/bootstrap/transition.js') }}"
+            type="text/javascript"></script>
+    <script src="{{ asset('assets/libraries/bootstrap-sass/javascripts/bootstrap/dropdown.js') }}"
+            type="text/javascript"></script>
+    <script src="{{ asset('assets/libraries/bootstrap-sass/javascripts/bootstrap/tooltip.js') }}"
+            type="text/javascript"></script>
+    <script src="{{ asset('assets/libraries/bootstrap-sass/javascripts/bootstrap/tab.js') }}"
+            type="text/javascript"></script>
+    <script src="{{ asset('assets/libraries/bootstrap-sass/javascripts/bootstrap/alert.js') }}"
+            type="text/javascript"></script>
+
+    <script src="{{ asset('assets/libraries/colorbox/jquery.colorbox-min.js') }}"
+            type="text/javascript"></script>
+
+    <script src="{{ asset('assets/libraries/flot/jquery.flot.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/libraries/flot/jquery.flot.spline.js') }}" type="text/javascript"></script>
+
+    <script src="{{ asset('assets/libraries/bootstrap-select/bootstrap-select.min.js') }}"
+            type="text/javascript"></script>
+
+    <script src="http://maps.googleapis.com/maps/api/js?libraries=weather,geometry,visualization,places,drawing&amp;sensor=false"
+            type="text/javascript"></script>
+
+    <script type="text/javascript" src="{{ asset('assets/libraries/jquery-google-map/infobox.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ asset('assets/libraries/jquery-google-map/markerclusterer.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ asset('assets/libraries/jquery-google-map/jquery-google-map.js') }}"></script>
+
+    <script type="text/javascript" src="{{ asset('assets/libraries/owl.carousel/owl.carousel.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ asset('assets/libraries/bootstrap-fileinput/fileinput.min.js') }}"></script>
+
+    <script src="{{ asset('assets/js/superlist.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js') }}"></script>
+    <script src="{{ asset('assets/js/select2.js') }}" type="text/javascript"></script>
+
+{% endblock %}
 
 </body>
 </html>

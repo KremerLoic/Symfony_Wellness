@@ -3,12 +3,19 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\TempUserRepository")
+ * @UniqueEntity(
+ * fields={"email"},
+ * errorPath="email",
+ * message="Email enregistré mais non validé."
+ *)
  */
 class TempUser
 {
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -22,7 +29,7 @@ class TempUser
     private $type;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true)
      */
     private $email;
 

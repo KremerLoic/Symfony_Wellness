@@ -28,7 +28,7 @@ class Images
     private $ordre;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Provider", inversedBy="logo")
+     * @ORM\OneToOne(targetEntity="App\Entity\Provider", inversedBy="logo")
      */
     private $logoProvider;
 

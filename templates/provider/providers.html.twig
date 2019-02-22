@@ -6,21 +6,16 @@
             {% for provider in providers %}
                 <div class="col-md-4">
                     <div class="maCard">
-                        <img class="providerImg"
+                        <img class="Img"
                              src="https://res.cloudinary.com/execftw/image/upload/v1542110758/man_2.png"/>
                         <a class="providerLink"
-                           href="{{ path('provider_show', {'id': provider.id}) }}"> {{ provider.name }} </a>
+                           href="{{ path('provider_show', {'id' : provider.id}) }}"> {{ provider.name }} </a>
                     </div>
                 </div>
             {% endfor %}
-
-            </div>
+        </div>
         <div class="navigation">
             {{ knp_pagination_render(providers) }}
         </div>
     </div>
-
-
-
-
 {% endblock %}

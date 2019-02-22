@@ -4,14 +4,21 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @ORM\InheritanceType("JOINED")
  * @ORM\DiscriminatorColumn(name="type", type="string")
  * @ORM\DiscriminatorMap({ "provider" = "Provider" , "surfer" = "Surfer"})
+ * @UniqueEntity(
+ * fields={"email"},
+ * errorPath="email",
+ * message="Email déjà enregistré."
+ *)
  */
-abstract class User
+abstract class User implements UserInterface
 {
     /**
      * @ORM\Id()
@@ -22,11 +29,13 @@ abstract class User
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Regex("/^[1-9][0-9]{0,4}$/")
      */
     private $number;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Regex("/^[a-zA-Z ]*$/")
      */
     private $street;
 
@@ -36,7 +45,8 @@ abstract class User
     private $banned;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255,unique=true)
+     * @Assert\Regex("/^[a-zA-Z0-9.!#$%&’*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/")
      */
     private $email;
 
@@ -135,11 +145,14 @@ abstract class User
      */
     public function getRoles(): array
     {
+
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
         $roles[] = 'ROLE_USER';
 
         return array_unique($roles);
+
+
     }
 
     public function setRoles(array $roles): self
@@ -224,11 +237,25 @@ abstract class User
 
         return $this;
     }
+
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUsername(): string
+    {
+        return (string) $this->email;
+    }
+
+
     /**
      * @see UserInterface
      */
     public function getSalt()
     {
+
+        return null;
         // not needed when using the "bcrypt" algorithm in security.yaml
     }
 
@@ -237,8 +264,11 @@ abstract class User
      */
     public function eraseCredentials()
     {
+
+
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
+
 
 }

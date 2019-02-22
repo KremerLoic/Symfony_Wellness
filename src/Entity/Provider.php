@@ -4,7 +4,11 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProviderRepository")
@@ -15,22 +19,34 @@ class Provider extends User
 
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true)
+     * @Assert\Regex("/^[a-zA-Z0-9.!#$%&’*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/")
+     *
      */
     private $emailProvider;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Regex("/^[a-zA-Z ]*$/")
      */
     private $name;
 
+
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $roles = [];
+
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Regex("/^[0-9]+$/")
      */
+
     private $telNumber;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Regex("/^[0-9]+$/")
      */
     private $tvaNumber;
 
@@ -45,22 +61,33 @@ class Provider extends User
     private $photo;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Images", mappedBy="logoProvider")
+     * @ORM\OneToOne(targetEntity="App\Entity\Images", mappedBy="logoProvider")
      */
     private $logo;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Services", mappedBy="Proposer")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Services", mappedBy="Provider")
      */
     private $services;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Stage", mappedBy="organiser")
+     */
+    private $stages;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Comments", mappedBy="provider")
+     */
+    private $Concern;
 
 
 
     public function __construct()
     {
         $this->photo = new ArrayCollection();
-        $this->logo = new ArrayCollection();
         $this->services = new ArrayCollection();
+        $this->stages = new ArrayCollection();
+        $this->Concern = new ArrayCollection();
     }
 
 
@@ -86,6 +113,22 @@ class Provider extends User
         $this->name = $name;
 
         return $this;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
+    {
+
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+        $roles[] = 'ROLE_PROVIDER';
+
+        return array_unique($roles);
+
+
     }
 
     public function getTelNumber(): ?string
@@ -157,10 +200,8 @@ class Provider extends User
         return $this;
     }
 
-    /**
-     * @return Collection|Provider[]
-     */
-    public function getLogo(): Collection
+
+    public function getLogo()
     {
         return $this->logo;
     }
@@ -168,7 +209,7 @@ class Provider extends User
     public function addLogo(Provider $logo): self
     {
         if (!$this->logo->contains($logo)) {
-            $this->logo[] = $logo;
+            $this->logo = $logo;
             $logo->setLogoProvider($this);
         }
 
@@ -200,7 +241,7 @@ class Provider extends User
     {
         if (!$this->services->contains($service)) {
             $this->services[] = $service;
-            $service->addProposer($this);
+            $service->addProvider($this);
         }
 
         return $this;
@@ -210,7 +251,69 @@ class Provider extends User
     {
         if ($this->services->contains($service)) {
             $this->services->removeElement($service);
-            $service->removeProposer($this);
+            $service->removeProvider($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Stage[]
+     */
+    public function getStages(): Collection
+    {
+        return $this->stages;
+    }
+
+    public function addStage(Stage $stage): self
+    {
+        if (!$this->stages->contains($stage)) {
+            $this->stages[] = $stage;
+            $stage->setOrganiser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStage(Stage $stage): self
+    {
+        if ($this->stages->contains($stage)) {
+            $this->stages->removeElement($stage);
+            // set the owning side to null (unless already changed)
+            if ($stage->getOrganiser() === $this) {
+                $stage->setOrganiser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Comments[]
+     */
+    public function getConcern(): Collection
+    {
+        return $this->Concern;
+    }
+
+    public function addConcern(Comments $concern): self
+    {
+        if (!$this->Concern->contains($concern)) {
+            $this->Concern[] = $concern;
+            $concern->setProvider($this);
+        }
+
+        return $this;
+    }
+
+    public function removeConcern(Comments $concern): self
+    {
+        if ($this->Concern->contains($concern)) {
+            $this->Concern->removeElement($concern);
+            // set the owning side to null (unless already changed)
+            if ($concern->getProvider() === $this) {
+                $concern->setProvider(null);
+            }
         }
 
         return $this;

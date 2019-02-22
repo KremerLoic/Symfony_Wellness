@@ -1,15 +1,15 @@
 security:
     encoders:
-        App\Entity\UserBis:
+        App\Entity\User:
             algorithm: bcrypt
 
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        # used to reload user from session & other features (e.g. switch_user)
-        app_user_provider:
+          from_database:
             entity:
-                class: App\Entity\User
-                property: email
+              class: App\Entity\User
+              property: email
+        # used to reload user from session & other features (e.g. switch_user)
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -17,19 +17,31 @@ security:
 
         main:
             anonymous: true
+            logout:
+              path: /logout
+              target: /index
+
+
+            guard:
+                authenticators:
+                    - App\Security\LoginFormAuthenticator
 
             # activate different ways to authenticate
 
             #http_basic: true
             # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
 
-            # form_login: true
+            form_login:
+              check_path: app_login
             # https://symfony.com/doc/current/security/form_login_setup.html
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-         - { path: ^/login, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+         - { path: ^/admin, roles: ROLE_ADMIN }
+         - { path: ^/profile, roles: [ROLE_SURFER, ROLE_PROVIDER]}
+         - { path: ^/providers, roles: [ROLE_SURFER, ROLE_PROVIDER]}
+         - { path: ^/provider/*, roles: [ROLE_SURFER, ROLE_PROVIDER]}
+
 
 

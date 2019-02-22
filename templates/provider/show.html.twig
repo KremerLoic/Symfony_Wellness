@@ -6,22 +6,22 @@
             <div class="d-flex flex-column">
                 <div class="col-md-10">
                     <hr/>
-                    <h3>{{ provider.name }}</h3>
+                    <h3>{{ provider.name }} <a href="{{ path('contact', {'id': provider.id}) }}">
+                            <button>Contact</button>
+                        </a></h3>
                     <hr/>
-
                     <div class="col-md-3">
                         {% if provider.logo|length > 0 %}
-                            {% for logo in provider.logo %}
-                                <img src="{{ logo }}"/>
-                            {% endfor %}
+                            <img src="{{ provider.logo }}"/>
                         {% else %}
                             <img src="https://res.cloudinary.com/execftw/image/upload/v1542100690/no_picture.png"/>
                         {% endif %}
                     </div>
 
                     <div class="col-md-3">
-
+                        <h3><u>Localité</u> :</h3><h4>{{ provider.locality }}</h4>
                         <h3><u>Rue</u> :</h3><h4>{{ provider.street }} {{ provider.number }}</h4>
+                        <h3><u>Code Postal</u> :</h3><h4>{{ provider.zipcode }}</h4>
                         <h3><u>Email Pro</u> :</h3> <h4>{{ provider.emailprovider }}</h4>
                         <h3><u>Email</u> :</h3><h4>{{ provider.email }}</h4>
                     </div>
@@ -30,26 +30,126 @@
                         <h3><u>Date d'inscription</u> : </h3><h4>{{ provider.registrationDate|date("d/m/y") }}</h4>
                         <h3><u>Tel</u> : </h3> <h4>{{ provider.telnumber }}</h4>
                         <h3><u>Num TVA</u> :</h3><h4>{{ provider.tvanumber }}</h4>
-                    </div>
-                        <div class="col-md-3">
                         <h3><u>Site Web</u> :</h3><h4>{{ provider.website }}</h4>
-                        </div>
                     </div>
                 </div>
                 <div class="col-md-10">
                     <hr/>
-                    <h3>Pictures</h3>
+                    <h3>Services proposés</h3>
                     <hr/>
-                    {% for photo in provider.photo %}
-                        <div class="col-md-3">
-                            <img src="{{ photo }}"/>
+
+                    {% for services in provider.services %}
+                        <div class="col-md-2">
+                            <h2><a href=" {{ path('service_show', {'id': services.id}) }}">{{ services.name }}</a></h2>
                         </div>
                     {% endfor %}
+                </div>
 
+                <div class="col-md-10">
+                    {% if provider.photo|length > 0 %}
+
+                        <hr/>
+                        <h3>Pictures</h3>
+                        <hr/>
+                        {% for photo in provider.photo %}
+                            <div class="col-md-3">
+                                <img src="{{ photo }}"/>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+                <div class="col-md-offset-2 col-md-10">
+                    {% if provider.stages|length > 0 %}
+                        <hr>
+                        <h3>Stages proposés</h3>
+                        <hr/>
+                        {% for stage in provider.stages %}
+                            <div class="col-md-3">
+                                <h2>{{ stage.name }}</h2>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
                 </div>
             </div>
         </div>
+        <div class="content" style="">
+            <hr style="margin-left:9%"/>
+            <h3 style="margin-left:18%;" id="reviews">Comments</h3>
+            <hr style="margin-left:18%;"/>
 
+            {% for comment in provider.concern %}
+
+                <div class="comments">
+                    <div class="comment">
+                        <div class="comment-inner" style="margin-left:15%;">
+                            <div class="comment-header">
+                                <h2>{{ comment.surfer.name }} </h2>
+                                <span class="separator">&#8226;</span>
+                                <span class="comment-date">{{ comment.encode|date('j-m-y') }}</span>
+                                <span class="comment-title" style="margin-left:5%; font-weight:900;">{{ comment.title }}</span>
+                                <span class="note" style="margin-left:5%; font-weight:900;">
+                                {% set star = comment.note %}
+                                    {% for i in range(1, star) %}
+                                        <i class="fa fa-star"></i>
+                                    {% endfor %}
+                                </span>
+
+                                <div class="comment-reply">
+                                </div><!-- /.comment-reply -->
+                            </div><!-- /.comment-header -->
+
+                            <div class="comment-content-wrapper">
+                                <div class="comment-content">
+                                    <p>{{ comment.content }}</p>
+
+                                </div><!-- /.comment-content -->
+                            </div><!-- /.comment-content-wrapper -->
+                        </div><!-- /.comment-inner -->
+                    </div><!-- /.comment -->
+
+                </div><!-- /.comments -->
+            {% endfor %}
+            {% if is_granted('ROLE_SURFER') %}
+                {{ form_start(form) }}
+                <h2 style="margin-left:15%">Write a Comment</h2>
+                <div class="row" style="margin-left:15%;">
+
+                    <div class="form-group col-sm-4">
+
+                        {{ form_errors(form.title) }}
+                        {{ form_label(form.title) }}
+                        {{ form_widget(form.title) }}
+                        {{ form_help(form.title) }}
+                    </div><!-- /.col-sm-12 -->
+
+                    <div class="form-group col-sm-4">
+                        {{ form_errors(form.note) }}
+                        {{ form_label(form.note) }}
+                        {{ form_widget(form.note) }}
+                        {{ form_help(form.note) }}
+
+                    </div><!-- /.col-sm-4 -->
+
+                    <div class="form-group col-sm-12">
+                        {{ form_errors(form.content) }}
+                        {{ form_label(form.content) }}
+                        {{ form_widget(form.content) }}
+                        {{ form_help(form.content) }}
+                    </div><!-- /.col-sm-4 -->
+
+                    <div class="col-sm-4">
+                        {{ form_widget(form.save) }}
+                    </div><!-- /.col-sm-4 -->
+
+                </div><!-- /.row -->
+                {{ form_end(form) }}
+            {% endif %}
+
+        </div><!-- /.post -->
+
+
+    </div><!-- /.content -->
 
 
 

@@ -4,15 +4,11 @@ namespace App\Form;
 
 use App\Entity\Locality;
 use App\Entity\Provider;
-
 use App\Entity\Services;
-use App\Entity\User;
 use App\Entity\ZipCode;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -29,6 +25,7 @@ class RegisterProviderFormType extends AbstractType
             ))
             ->add('email', EmailType::class, array(
                 'attr' => array('class' => 'form-control'),
+
             ))
 
             ->add('email_provider', EmailType::class, array(
@@ -41,6 +38,14 @@ class RegisterProviderFormType extends AbstractType
                 'attr' => array('class' => 'form-control'),
             ))
             ->add('number', TextType::class, array(
+                'attr' => array('class' => 'form-control'),
+            ))
+            ->add('services', EntityType::class, array(
+                'placeholder' =>'Services',
+                'label' => '',
+                'by_reference' => false,
+                'class' => Services::class,
+                'multiple'=> true,
                 'attr' => array('class' => 'form-control'),
             ))
             ->add('zipCode', EntityType::class, array(
@@ -67,14 +72,7 @@ class RegisterProviderFormType extends AbstractType
                 'attr' => array('class' => 'form-control'),
             ))
 
-            ->add('services', EntityType::class, array(
-                'label' => 'Services',
-                'class' => Services::class,
-                'multiple' => true,
-                'attr' => array('class' => 'form-control'),
-
-            ))
-            ->add('save',SubmitType::class);
+            ->add('save',SubmitType::class, ['label' => 'Register']);
     }
 
     public function configureOptions(OptionsResolver $resolver)

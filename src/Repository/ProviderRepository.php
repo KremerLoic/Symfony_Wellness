@@ -30,8 +30,6 @@ class ProviderRepository extends ServiceEntityRepository
         $qb->leftJoin('p.photo','photo');
         $qb->addSelect('photo');
 
-        $qb->leftJoin('p.logo','logo');
-        $qb->addSelect('logo');
 
         if($searchName !== ''){
             $qb->andWhere('p.name LIKE :value');
@@ -63,13 +61,6 @@ class ProviderRepository extends ServiceEntityRepository
 
     public function findAllProviders(){
         $qb = $this->createQueryBuilder('p');
-
-            $qb->leftJoin('p.photo','photo');
-            $qb->addSelect('photo');
-
-            $qb->leftJoin('p.logo','logo');
-            $qb->addSelect('logo');
-
             $result= $qb->getQuery()->getResult();
             return  $result;
 

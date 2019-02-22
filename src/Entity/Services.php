@@ -46,7 +46,7 @@ class Services
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Provider", inversedBy="services")
      */
-    private $Proposer;
+    private $Provider;
 
     public function __toString()
     {
@@ -55,7 +55,7 @@ class Services
 
     public function __construct()
     {
-        $this->Proposer = new ArrayCollection();
+        $this->Provider = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -126,24 +126,27 @@ class Services
     /**
      * @return Collection|Provider[]
      */
-    public function getProposer(): Collection
+    public function getProvider(): Collection
     {
-        return $this->Proposer;
+        return $this->Provider;
     }
 
-    public function addProposer(Provider $proposer): self
+    public function addProvider(Provider $provider): self
     {
-        if (!$this->Proposer->contains($proposer)) {
-            $this->Proposer[] = $proposer;
-        }
+            if (!$this->Provider->contains($provider)) {
+                $this->Provider[] = $provider;
+                $provider->addService($this);
+            }
+
 
         return $this;
     }
 
-    public function removeProposer(Provider $proposer): self
+    public function removeProvider(Provider $provider): self
     {
-        if ($this->Proposer->contains($proposer)) {
-            $this->Proposer->removeElement($proposer);
+        if ($this->Provider->contains($provider)) {
+            $this->Provider->removeElement($provider);
+            $provider->removeService($this);
         }
 
         return $this;

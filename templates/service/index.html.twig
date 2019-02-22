@@ -1,11 +1,16 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-
-    <h2>What's new ?</h2>
-
-
-
-
-
-
+    <div class="container-fluid">
+        <div class="col-md-10">
+            {% for service in services %}
+                <div class="col-md-4">
+                    <div class="maCard">
+                        <i class="fas fa-8x fa-store Img"></i>
+                        <a class="serviceLink"
+                           href="{{ path('service_show', {'id' : service.id}) }}"> {{ service.name }} </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}

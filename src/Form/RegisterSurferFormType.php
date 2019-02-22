@@ -4,8 +4,6 @@ namespace App\Form;
 
 use App\Entity\Locality;
 use App\Entity\Surfer;
-
-
 use App\Entity\ZipCode;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -17,6 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+
 
 class RegisterSurferFormType extends AbstractType
 {
@@ -63,8 +62,6 @@ class RegisterSurferFormType extends AbstractType
                 'class' => ZipCode::class,
                 'multiple'=> false,
             ))
-
-
 
         ->add('save', SubmitType::class);
     }
