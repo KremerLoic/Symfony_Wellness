@@ -10,6 +10,7 @@ namespace App\EventListener;
 
 use App\Entity\Images;
 use App\Entity\Provider;
+use App\Entity\Surfer;
 use App\Entity\User;
 use App\Form\ImageFormType;
 use App\Services\FileUploader;
@@ -46,36 +47,13 @@ class ImageUploadListener
     }
 
     public function preUpdate(PreUpdateEventArgs $args)
-    {;
+    {
+        ;
 
         $entity = $args->getEntity();
 
-        $previousImage = null;
-        // si l'entité modifiée est User
-        if($entity instanceof Provider){
 
-            // on récupère les changements
-            $changes = $args->getEntityChangeSet();
-            // si il y a un changement à la propriété `profilePicture`
-            if(array_key_exists('logo', $changes)){
-
-
-                // on récupère l'"ntité existant avant le changement
-                $previousImage = $changes['logo'][0];
-            }
-            // si la nouvelle version du User n'a plus de profilePicture
-            if(is_null($entity->getLogo())){
-                // on lui réinjecte l'image précédente
-                $entity->setLogo($previousImage);
-            }else{
-                // si une nouvelle Image est uploadée
-                // et qu'il en existe déjà une dans l'entité
-                if(! is_null($previousImage)){
-                    $this->uploader->removeFile($previousImage);
-                }
-            }
-        }
-
+        $this->checkUploadEntity($entity, $args);
 
         $this->uploadFile($entity);
 
@@ -107,4 +85,39 @@ class ImageUploadListener
         }
     }
 
+    public function checkUploadEntity($entity, PreUpdateEventArgs $args)
+    {
+        $previousImage = null;
+        if ($entity instanceof Provider) {
+            $arrayKey = 'logo';
+        } else if ($entity instanceof Surfer) {
+            $arrayKey = 'photo';
+        }else{
+            return;
+        }
+
+        $getter = 'get' . ucfirst($arrayKey);
+        $setter = 'get' . ucfirst($arrayKey);
+
+        // on récupère les changements
+        $changes = $args->getEntityChangeSet();
+        // si il y a un changement à la propriété `profilePicture`
+        if (array_key_exists($arrayKey, $changes)) {
+
+
+            // on récupère l'"ntité existant avant le changement
+            $previousImage = $changes[$arrayKey][0];
+        }
+        // si la nouvelle version du User n'a plus de profilePicture
+        if (is_null($entity->$getter())) {
+            // on lui réinjecte l'image précédente
+            $entity->$setter($previousImage);
+        } else {
+            // si une nouvelle Image est uploadée
+            // et qu'il en existe déjà une dans l'entité
+            if (!is_null($previousImage)) {
+                $this->uploader->removeFile($previousImage);
+            }
+        }
+    }
 }

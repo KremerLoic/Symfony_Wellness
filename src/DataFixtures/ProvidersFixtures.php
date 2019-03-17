@@ -125,8 +125,7 @@ class ProvidersFixtures extends Fixture
 
             $image = new Images();
             $image->setImage('https://www.stevensegallery.com/200/150');
-            $image->setOrdre(1);
-            $image->setPhotoProvider($tabProvider[array_rand($tabProvider)]);
+            $image->setOrdre(1);;
 
             $manager->persist($image);
         }

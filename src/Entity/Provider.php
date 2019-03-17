@@ -60,7 +60,7 @@ class Provider extends User
     private $photo;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Images",  cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="App\Entity\Images",cascade={"persist", "remove"})
      */
     private $logo;
 
@@ -70,12 +70,12 @@ class Provider extends User
     private $services;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Stage", mappedBy="organiser")
+     * @ORM\OneToMany(targetEntity="App\Entity\Stage", mappedBy="organiser", orphanRemoval=true)
      */
     private $stages;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Comments", mappedBy="provider")
+     * @ORM\OneToMany(targetEntity="App\Entity\Comments", mappedBy="provider", cascade={"persist", "remove"})
      */
     private $Concern;
 

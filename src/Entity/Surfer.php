@@ -38,9 +38,14 @@ class Surfer extends User
     private $newsletter;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Comments", mappedBy="surfer")
+     * @ORM\OneToMany(targetEntity="App\Entity\Comments", mappedBy="surfer", cascade={"persist","remove"})
      */
     private $draft;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Images", cascade={"persist", "remove"})
+     */
+    private $photo;
 
 
     public function __construct()
@@ -134,6 +139,18 @@ class Surfer extends User
                 $draft->setSurfer(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPhoto(): ?Images
+    {
+        return $this->photo;
+    }
+
+    public function setPhoto(?Images $photo): self
+    {
+        $this->photo = $photo;
 
         return $this;
     }

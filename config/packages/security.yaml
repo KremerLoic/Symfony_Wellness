@@ -28,7 +28,7 @@ security:
             anonymous: true
             logout:
               path: /logout
-              target: /index
+              target: /
 
 
 

@@ -62,6 +62,7 @@ class RegisterSurferFormType extends AbstractType
                 'class' => ZipCode::class,
                 'multiple'=> false,
             ))
+            ->add('photo', ImageType::class)
 
         ->add('save', SubmitType::class);
     }
