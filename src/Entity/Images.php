@@ -2,8 +2,8 @@
 
 namespace App\Entity;
 
-use App\Cloudinary\Cloudinary;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ImagesRepository")
@@ -19,6 +19,8 @@ class Images
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Please, upload the image as an image file")
+
      */
     private $image;
 
@@ -28,7 +30,7 @@ class Images
     private $ordre;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Provider", inversedBy="logo")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Provider", inversedBy="logo")
      */
     private $logoProvider;
 
@@ -37,17 +39,22 @@ class Images
      */
     private $photoProvider;
 
+    public function __toString()
+    {
+        return $this->image;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getImage(): ?string
+    public function getImage()
     {
         return $this->image;
     }
 
-    public function setImage(string $image): self
+    public function setImage($image): self
     {
         $this->image = $image;
 
@@ -90,10 +97,5 @@ class Images
         return $this;
     }
 
-    public function __toString()
-    {
-        Cloudinary::connect();
 
-        return cloudinary_url($this->image);
-    }
 }

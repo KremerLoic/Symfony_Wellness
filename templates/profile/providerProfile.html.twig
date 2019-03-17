@@ -12,10 +12,9 @@
                             <div class="sidebar">
                                 <div class="widget">
                                     <div class="user-photo">
-                                        <a href="#">
-                                            <img src="assets/img/tmp/agent-2.jpg" alt="User Photo">
-                                            <span class="user-photo-action">Modifier l'avatar</span>
-                                        </a>
+                                            <img src="{{ asset('img/' ~ app.user.logo) }}" alt="User Photo">
+                                     <!---   <button class="" style="margin-left:25%"><a href=""> Changer l'image!</a></button>!--->
+
                                     </div><!-- /.user-photo -->
                                 </div><!-- /.widget -->
                             </div><!-- /.sidebar -->
@@ -32,10 +31,14 @@
                                     <h3 class="page-title">
                                         Informations personnelles
                                     </h3>
-
-
-
                                     <div class="row">
+                                        <div class="form-group col-sm-12">
+                                            {{ form_errors(form.logo) }}
+                                            {{ form_label(form.logo) }}
+                                            {{ form_widget(form.logo) }}
+                                            {{ form_help(form.logo) }}
+                                        </div><!-- /.form-group -->
+
                                         <div class="form-group col-sm-6">
                                             {{ form_errors(form.name) }}
                                             {{ form_label(form.name) }}
@@ -87,7 +90,6 @@
                                         </div><!-- /.form-group -->
 
 
-
                                     </div><!-- /.row -->
                                 </div>
 
@@ -120,26 +122,27 @@
                                         </div><!-- /.form-group -->
 
 
-
                                         <div class="form-group col-sm-3">
                                             {{ form_errors(form.zipCode) }}
                                             {{ form_label(form.zipCode) }}
                                             {{ form_widget(form.zipCode) }}
                                             {{ form_help(form.zipCode) }}
+                                        </div>
 
-                                        </div><!-- /.form-group -->
-                                    </div><!-- /.row -->
 
-                                    {{ form_widget(form.save) }}
-                                </div>
+                                    </div><!-- /.form-group -->
+                                </div><!-- /.row -->
 
+                                {{ form_widget(form.save) }}
                             </div>
+
                         </div>
                     </div>
-                </div><!-- /.content -->
-            </div><!-- /.container -->
-        </div><!-- /.main-inner -->
-    </div><!-- /.main -->
+                </div>
+            </div><!-- /.content -->
+        </div><!-- /.container -->
+    </div><!-- /.main-inner -->
+
     {{ form_end(form) }}
 
 {% endblock %}

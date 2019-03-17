@@ -177,7 +177,7 @@ class ProvidersFixtures extends Fixture
         for($i = 0 ; $i < $this->nbComments; $i++){
             $comments = new Comments();
             $comments->setContent('ContenuDuCommentaire_'.$i);
-            $comments->setNote($i);
+        $comments->setNote(rand(1,5));
             $comments->setEncode(new \DateTime());
             $comments->setTitle('Titre du commentaire_'.$i);
             $comments->setProvider($tabProvider[array_rand($tabProvider)]);

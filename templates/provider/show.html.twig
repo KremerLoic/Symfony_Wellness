@@ -12,7 +12,7 @@
                     <hr/>
                     <div class="col-md-3">
                         {% if provider.logo|length > 0 %}
-                            <img src="{{ provider.logo }}"/>
+                            <img src="{{ asset('img/' ~ provider.logo) }}"/>
                         {% else %}
                             <img src="https://res.cloudinary.com/execftw/image/upload/v1542100690/no_picture.png"/>
                         {% endif %}

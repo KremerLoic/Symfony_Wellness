@@ -1,0 +1,48 @@
+easy_admin:
+    list:
+        max_results: 15
+    site_name: 'Wellness'
+
+    entities:
+        # List the entity class name you want to manage
+      Services:
+          class: App\Entity\Services
+          label: 'Services'
+          list:
+            title: "Liste des services"
+            fields: ['id', 'is_valid', 'name','description', 'highlight','Provider']
+      Provider:
+          class: App\Entity\Provider
+          label: 'Providers'
+          list:
+            title: "Liste des providers"
+            fields: ['id','name', 'banned', 'confirmed','emailProvider', 'registration_date', 'stages']
+      Surfer:
+           class: App\Entity\Surfer
+           label: 'Surfers'
+           list:
+              title: "Liste des surfers"
+              fields: ['id','name','newsletter', 'banned', 'confirmed','email', 'registration_date']
+      Stage:
+          class: App\Entity\Stage
+          label: 'Stages'
+          list:
+            title: "Liste des stages"
+            fields: ['id','name','price', 'dateFrom', 'dateTo','dateStart', 'dateEnd', 'organiser']
+      TempUser:
+          class: App\Entity\TempUser
+          label: 'Users Temporaires'
+          list:
+            title: "Liste des Users Temporaires"
+            fields: ['id','type','email','token']
+      Comments:
+          class: App\Entity\Comments
+          label: 'Commentaires'
+          list:
+            title: "Liste des commentaires des diffèrents services"
+            fields: ['id','surfer','title','content','note','encode','provider']
+
+
+
+
+

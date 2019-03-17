@@ -10,20 +10,16 @@ use Symfony\Component\Routing\Annotation\Route;
 class ServiceController extends AbstractController
 {
     /**
-     * @Route("/index", name="index")
+     * @Route("/", name="index")
      */
     public function Index()
     {
         $repository = $this->getDoctrine()->getRepository(Services::class);
         $services = $repository->findAll();
 
-
         return $this->render('service/index.html.twig', [
             'services' => $services
         ]);
-
-
-
     }
 
     public function AllServices()

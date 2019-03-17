@@ -13,7 +13,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProviderRepository")
  */
-
 class Provider extends User
 {
 
@@ -56,12 +55,12 @@ class Provider extends User
     private $website;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Images", mappedBy="photoProvider")
+     * @ORM\OneToMany(targetEntity="App\Entity\Images", mappedBy="photoProvider", orphanRemoval=true)
      */
     private $photo;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Images", mappedBy="logoProvider")
+     * @ORM\OneToOne(targetEntity="App\Entity\Images", mappedBy="logoProvider",  cascade={"persist", "remove"})
      */
     private $logo;
 
@@ -80,7 +79,10 @@ class Provider extends User
      */
     private $Concern;
 
-
+    public function __toString()
+    {
+        return $this->name;
+    }
 
     public function __construct()
     {
@@ -168,7 +170,6 @@ class Provider extends User
     }
 
 
-
     /**
      * @return Collection|Images[]
      */
@@ -201,33 +202,20 @@ class Provider extends User
     }
 
 
-    public function getLogo()
+    public function getLogo(): ?Images
     {
         return $this->logo;
     }
 
-    public function addLogo(Provider $logo): self
+
+    public function setLogo(?Images $logo): self
     {
-        if (!$this->logo->contains($logo)) {
-            $this->logo = $logo;
-            $logo->setLogoProvider($this);
-        }
+
+        $this->logo = $logo;
 
         return $this;
     }
 
-    public function removeLogo(Provider $logo): self
-    {
-        if ($this->logo->contains($logo)) {
-            $this->logo->removeElement($logo);
-            // set the owning side to null (unless already changed)
-            if ($logo->getLogoProvider() === $this) {
-                $logo->setLogoProvider(null);
-            }
-        }
-
-        return $this;
-    }
 
     /**
      * @return Collection|Services[]

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Images;
 use App\Entity\Provider;
 use App\Entity\Surfer;
 use App\Entity\TempUser;
@@ -10,6 +11,7 @@ use App\Entity\User;
 use App\Form\RegisterFormType;
 use App\Form\RegisterProviderFormType;
 use App\Form\RegisterSurferFormType;
+use App\Services\Contact;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -30,9 +32,8 @@ class TempUserController extends AbstractController
     /**
      * @Route("/register", name="register")
      */
-    public function register(Request $request, \Swift_Mailer $mailer)
+    public function register(Request $request, Contact $register)
     {
-
         $tempUser = new TempUser();
         $form = $this->createForm(RegisterFormType::class, $tempUser);
         $form->handleRequest($request);
@@ -40,19 +41,12 @@ class TempUserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $token = bin2hex(openssl_random_pseudo_bytes(16));
             $tempUser->setToken($token);
-            $type = $tempUser->getType();
             $em = $this->getDoctrine()->getManager();
             $em->persist($tempUser);
             $em->flush();
+            $register->registerMail($tempUser);
 
-            $message = (new \Swift_Message('You got Mail!'))
-                ->setFrom('loickremer882@gmail.com')
-                ->setTo($tempUser->getEmail())
-                ->setBody(
-                    "Lien de confirmation de votre compte :  http://localhost:8000/register/$type/$token"
-                );
-
-            $mailer->send($message);
+        return $this->render('temp_user/successRegister.html.twig');
 
         }
 
@@ -64,7 +58,7 @@ class TempUserController extends AbstractController
     /**
      * @Route("/register/{type}/{token}", name="register_confirm")
      */
-    public function registerConfirm(Request $request, $token, $type)
+    public function registerConfirm(Request $request, Contact $register, $token, $type)
     {
 
         $repository = $this->getDoctrine()->getRepository(TempUser::class);
@@ -72,49 +66,43 @@ class TempUserController extends AbstractController
 
         if ($tempUser) {
             if ($type === 'Provider') {
-                $provider = new Provider();
+
+                $provider = $register->setRequiredFields($type);
+
                 $form = $this->createForm(RegisterProviderFormType::class, $provider);
                 $form->handleRequest($request);
 
+
                 if ($form->isSubmitted() && $form->isValid()) {
-                    $provider->setBanned(false);
-                    $provider->setConfirmed(true);
-                    $provider->setRegistrationDate(new \DateTime());
-                    $provider->setFailedTry(0);
-                    $provider->setPassword($this->encoder->encodePassword($provider, $provider->getPassword()));
                     $em = $this->getDoctrine()->getManager();
+                    $provider->setPassword($this->encoder->encodePassword($provider, $provider->getPassword()));
+
                     $em->remove($tempUser);
                     $em->persist($provider);
                     $em->flush();
+                    $register->registerMail($provider);
 
                     return $this->redirectToRoute('app_login');
+
                 }
 
-
-
             } else if ($type === 'Surfer') {
+                $surfer= $register->setRequiredFields($type);
 
-                $surfer = new Surfer();
                 $form = $this->createForm(RegisterSurferFormType::class, $surfer);
                 $form->handleRequest($request);
 
                 if ($form->isSubmitted() && $form->isValid()) {
-                    $surfer->setBanned(false);
-                    $surfer->setConfirmed(true);
-                    $surfer->setRegistrationDate(new \DateTime());
-                    $surfer->setFailedTry(0);
-                    $surfer->setPassword($this->encoder->encodePassword($surfer, $surfer->getPassword()));
-
                     $em = $this->getDoctrine()->getManager();
+                    $surfer->setPassword($this->encoder->encodePassword($surfer, $surfer->getPassword()));
                     $em->remove($tempUser);
                     $em->persist($surfer);
                     $em->flush();
+                    $register->registerMail($surfer);
 
                     return $this->redirectToRoute('app_login');
 
                 }
-
-
             }
         } else {
             echo('Cet utilisateur n\'existe pas ou est déjà enregistré.');
@@ -125,7 +113,5 @@ class TempUserController extends AbstractController
         return $this->render('security/register.html.twig', array(
             "form" => $form->createView()
         ));
-
-
     }
 }

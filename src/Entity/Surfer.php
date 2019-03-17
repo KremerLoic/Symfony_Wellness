@@ -12,12 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Surfer extends User
 {
-    /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     */
-    private $id;
+
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -47,20 +42,18 @@ class Surfer extends User
      */
     private $draft;
 
-    public function __toString()
-    {
-        return $this->name;
-    }
 
     public function __construct()
     {
         $this->draft = new ArrayCollection();
     }
 
-    public function getId(): ?int
+    public function __toString()
     {
-        return $this->id;
+        return $this->name;
     }
+
+
 
     public function getFirstname(): ?string
     {

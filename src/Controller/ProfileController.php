@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Images;
 use App\Entity\Provider;
 use App\Entity\Surfer;
 use App\Form\RegisterProviderFormType;
@@ -28,18 +29,25 @@ class ProfileController extends AbstractController
 
 
 
+
+
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
 
+
             return $this->redirectToRoute('profile');
 
         }
 
+
         if ($user instanceof Provider) {
+
+
             return $this->render('profile/providerProfile.html.twig', [
                 'form' => $form->createView(),
+                'user' => $user
             ]);
         } else if ($user instanceof Surfer) {
             return $this->render('profile/surferProfile.html.twig', [

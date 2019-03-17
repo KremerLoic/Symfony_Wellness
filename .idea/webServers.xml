@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="bd64bc3e-a1b0-4fe7-8242-1096b232cdf0" name="ohmedias" url="http://ohmedias.pro">
+        <fileTransfer host="ohmedias.pro" port="210">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="210" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

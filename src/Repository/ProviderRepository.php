@@ -23,46 +23,45 @@ class ProviderRepository extends ServiceEntityRepository
     /**
      * @return Provider[]
      */
-    public function findByNameCpService($searchName,$searchLocality,$searchService){
+    public function findByNameCpService($searchName, $searchLocality, $searchService)
+    {
 
         $qb = $this->createQueryBuilder('p');
 
-        $qb->leftJoin('p.photo','photo');
+        $qb->leftJoin('p.photo', 'photo');
         $qb->addSelect('photo');
 
 
-        if($searchName !== ''){
+        if ($searchName !== '') {
             $qb->andWhere('p.name LIKE :value');
-            $qb->setParameter('value', '%'.$searchName.'%');
+            $qb->setParameter('value', '%' . $searchName . '%');
         }
 
-        if($searchService !== ''){
+        if ($searchService !== '') {
             $qb->leftJoin('p.services', 'services');
             $qb->addSelect('services');
             $qb->andWhere('services.name LIKE :value');
-            $qb->setParameter('value', '%'.$searchService.'%' );
+            $qb->setParameter('value', '%' . $searchService . '%');
         }
 
-        if($searchLocality !== ''){
+        if ($searchLocality !== '') {
             $qb->leftJoin('p.locality', 'locality');
             $qb->addSelect('locality');
             $qb->andWhere('locality.locality LIKE :value');
-            $qb->setParameter('value', '%'.$searchLocality.'%');
+            $qb->setParameter('value', '%' . $searchLocality . '%');
         }
 
         $result = $qb->getQuery()->getResult();
         return $result;
 
-
-
     }
 
 
-
-    public function findAllProviders(){
+    public function findAllProviders()
+    {
         $qb = $this->createQueryBuilder('p');
-            $result= $qb->getQuery()->getResult();
-            return  $result;
+        $result = $qb->getQuery()->getResult();
+        return $result;
 
 
     }

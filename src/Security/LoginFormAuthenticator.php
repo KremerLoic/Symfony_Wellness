@@ -97,4 +97,15 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
     {
         return $this->router->generate('app_login');
     }
+
+
+    public function checkBanned(TokenInterface $token){
+
+        $user = $token->getUser();
+
+        if($user->isEnabled()){
+            return false;
+        }
+    }
+
 }
