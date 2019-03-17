@@ -1,7 +1,7 @@
 # Symfony_Wellness
 2018-2019 Symfony Project : Wellness website
 
-#Modifications éffectuées par rapport à la V1 : 
+<h1>Modifications éffectuées par rapport à la V1 : </h1>
 
 - Ajout d'un service pour le Mailer.
 - Ajout du panel admin. 
