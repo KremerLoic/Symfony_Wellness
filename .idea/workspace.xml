@@ -2,18 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="45ef6c44-8439-4edc-8d22-d0e364e4079a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/Jacky-10-03-2019-13-29-14.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/css/app.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/js/app.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/config/packages/oneup_flysystem.yaml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/EventListener/ImageUploadListener.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Security/UserChecker.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Services/Contact.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Services/FileUploader.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/emails/confirm.html.twig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/emails/confirmProvider.html.twig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/emails/confirmSurfer.html.twig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/temp_user/successRegister.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ImgUpload/image-upload-example/.env" afterPath="$PROJECT_DIR$/../ImgUpload/image-upload-example/.env" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ImgUpload/image-upload-example/composer.json" afterPath="$PROJECT_DIR$/../ImgUpload/image-upload-example/composer.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ImgUpload/image-upload-example/composer.lock" afterPath="$PROJECT_DIR$/../ImgUpload/image-upload-example/composer.lock" />
@@ -22,45 +10,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ImgUpload/image-upload-example/templates/admin/profile/index.html.twig" afterPath="$PROJECT_DIR$/../ImgUpload/image-upload-example/templates/admin/profile/index.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ImgUpload/image-upload-example/templates/base.html.twig" afterPath="$PROJECT_DIR$/../ImgUpload/image-upload-example/templates/base.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ImgUpload/image-upload-example/templates/home/index.html.twig" afterPath="$PROJECT_DIR$/../ImgUpload/image-upload-example/templates/home/index.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/5dc1cb3e-9055-4459-8c74-79768eda5cc9.xml" afterPath="$PROJECT_DIR$/.idea/dataSources/5dc1cb3e-9055-4459-8c74-79768eda5cc9.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/bundles.php" afterPath="$PROJECT_DIR$/config/bundles.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/packages/framework.yaml" afterPath="$PROJECT_DIR$/config/packages/framework.yaml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/packages/security.yaml" afterPath="$PROJECT_DIR$/config/packages/security.yaml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/packages/test/framework.yaml" afterPath="$PROJECT_DIR$/config/packages/test/framework.yaml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/packages/translation.yaml" afterPath="$PROJECT_DIR$/config/packages/translation.yaml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/packages/twig.yaml" afterPath="$PROJECT_DIR$/config/packages/twig.yaml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/services.yaml" afterPath="$PROJECT_DIR$/config/services.yaml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/css/superlist.css" afterPath="$PROJECT_DIR$/public/assets/css/superlist.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Controller/ContactController.php" afterPath="$PROJECT_DIR$/src/Controller/ContactController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Controller/ProfileController.php" afterPath="$PROJECT_DIR$/src/Controller/ProfileController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Controller/SecurityController.php" afterPath="$PROJECT_DIR$/src/Controller/SecurityController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Controller/ServiceController.php" afterPath="$PROJECT_DIR$/src/Controller/ServiceController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Controller/TempUserController.php" afterPath="$PROJECT_DIR$/src/Controller/TempUserController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DataFixtures/ProvidersFixtures.php" afterPath="$PROJECT_DIR$/src/DataFixtures/ProvidersFixtures.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Entity/Comments.php" afterPath="$PROJECT_DIR$/src/Entity/Comments.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Entity/Images.php" afterPath="$PROJECT_DIR$/src/Entity/Images.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Entity/Provider.php" afterPath="$PROJECT_DIR$/src/Entity/Provider.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Entity/Stage.php" afterPath="$PROJECT_DIR$/src/Entity/Stage.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Entity/Surfer.php" afterPath="$PROJECT_DIR$/src/Entity/Surfer.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Entity/TempUser.php" afterPath="$PROJECT_DIR$/src/Entity/TempUser.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Entity/User.php" afterPath="$PROJECT_DIR$/src/Entity/User.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Form/RegisterProviderFormType.php" afterPath="$PROJECT_DIR$/src/Form/RegisterProviderFormType.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Kernel.php" afterPath="$PROJECT_DIR$/src/Kernel.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Repository/ProviderRepository.php" afterPath="$PROJECT_DIR$/src/Repository/ProviderRepository.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Security/LoginFormAuthenticator.php" afterPath="$PROJECT_DIR$/src/Security/LoginFormAuthenticator.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/symfony.lock" afterPath="$PROJECT_DIR$/symfony.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/base.html.twig" afterPath="$PROJECT_DIR$/templates/base.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/city/index.html.twig" afterPath="$PROJECT_DIR$/templates/city/index.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/comment/contact.html.twig" afterPath="$PROJECT_DIR$/templates/comment/contact.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/profile/providerProfile.html.twig" afterPath="$PROJECT_DIR$/templates/profile/providerProfile.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/provider/show.html.twig" afterPath="$PROJECT_DIR$/templates/provider/show.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/search/index.html.twig" afterPath="$PROJECT_DIR$/templates/search/index.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/temp_user/login.html.twig" afterPath="$PROJECT_DIR$/templates/temp_user/login.html.twig" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -429,12 +378,12 @@
       <workItem from="1552334431005" duration="11958000" />
       <workItem from="1552419620376" duration="19298000" />
       <workItem from="1552465608892" duration="3000" />
-      <workItem from="1552595088543" duration="83345000" />
+      <workItem from="1552595088543" duration="83483000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="486349000" />
+    <option name="totallyTimeSpent" value="486487000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
