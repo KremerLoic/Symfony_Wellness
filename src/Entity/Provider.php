@@ -60,7 +60,7 @@ class Provider extends User
     private $photo;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Images", mappedBy="logoProvider",  cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="App\Entity\Images",  cascade={"persist", "remove"})
      */
     private $logo;
 

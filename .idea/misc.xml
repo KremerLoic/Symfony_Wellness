@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectPlainTextFileTypeManager">
+    <file url="file://$PROJECT_DIR$/src/Migrations/Version20181008172622.php" />
+    <file url="file://$PROJECT_DIR$/src/Migrations/Version20181015185808.php" />
+    <file url="file://$PROJECT_DIR$/src/Migrations/Version20181015190012.php" />
+    <file url="file://$PROJECT_DIR$/src/Migrations/Version20181015190346.php" />
+    <file url="file://$PROJECT_DIR$/src/Migrations/Version20181015190525.php" />
+    <file url="file://$PROJECT_DIR$/src/Migrations/Version20181015190950.php" />
+    <file url="file://$PROJECT_DIR$/src/Migrations/Version20181016162616.php" />
+    <file url="file://$PROJECT_DIR$/src/Migrations/Version20181016163027.php" />
+    <file url="file://$PROJECT_DIR$/src/Migrations/Version20181016170223.php" />
+    <file url="file://$PROJECT_DIR$/src/Migrations/Version20181016180102.php" />
+    <file url="file://$PROJECT_DIR$/src/Migrations/Version20181016183143.php" />
+    <file url="file://$PROJECT_DIR$/src/Migrations/Version20181022162756.php" />
+    <file url="file://$PROJECT_DIR$/src/Migrations/Version20181022172044.php" />
+    <file url="file://$PROJECT_DIR$/src/Migrations/Version20181022184813.php" />
+    <file url="file://$PROJECT_DIR$/src/Migrations/Version20181023162522.php" />
+    <file url="file://$PROJECT_DIR$/src/Migrations/Version20181126194152.php" />
+    <file url="file://$PROJECT_DIR$/src/Migrations/Version20181126194705.php" />
+    <file url="file://$PROJECT_DIR$/src/Migrations/Version20181126195234.php" />
+    <file url="file://$PROJECT_DIR$/src/Migrations/Version20181126195344.php" />
+    <file url="file://$PROJECT_DIR$/src/Migrations/Version20181127172652.php" />
+    <file url="file://$PROJECT_DIR$/src/Migrations/Version20181204194126.php" />
+    <file url="file://$PROJECT_DIR$/src/Migrations/Version20190110193259.php" />
+    <file url="file://$PROJECT_DIR$/src/Migrations/Version20190117181223.php" />
+    <file url="file://$PROJECT_DIR$/src/Migrations/Version20190121195208.php" />
+    <file url="file://$PROJECT_DIR$/src/Migrations/Version20190218210523.php" />
+    <file url="file://$PROJECT_DIR$/src/Migrations/Version20190218232129.php" />
+    <file url="file://$PROJECT_DIR$/src/Migrations/Version20190219193409.php" />
+    <file url="file://$PROJECT_DIR$/src/Migrations/Version20190221222839.php" />
+    <file url="file://$PROJECT_DIR$/src/Migrations/Version20190221223745.php" />
+    <file url="file://$PROJECT_DIR$/src/Migrations/Version20190221224045.php" />
+    <file url="file://$PROJECT_DIR$/src/Migrations/Version20190221225709.php" />
+    <file url="file://$PROJECT_DIR$/src/Migrations/Version20190222221045.php" />
+  </component>
+</project>

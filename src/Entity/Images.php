@@ -30,14 +30,11 @@ class Images
     private $ordre;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Provider", inversedBy="logo")
-     */
-    private $logoProvider;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Provider", inversedBy="photo")
      */
     private $photoProvider;
+
+
 
     public function __toString()
     {
@@ -69,18 +66,6 @@ class Images
     public function setOrdre(int $ordre): self
     {
         $this->ordre = $ordre;
-
-        return $this;
-    }
-
-    public function getLogoProvider(): ?Provider
-    {
-        return $this->logoProvider;
-    }
-
-    public function setLogoProvider(?Provider $provider): self
-    {
-        $this->logoProvider = $provider;
 
         return $this;
     }

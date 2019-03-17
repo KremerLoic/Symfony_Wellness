@@ -96,7 +96,6 @@ class ImageUploadListener
             $fileName = $this->uploader->upload($file);
             $entity->setImage($fileName);
             $entity->setOrdre(1);
-            $entity->setLogoProvider($this->tokenStorage->getToken()->getUser());
 
 
         } elseif ($file instanceof File) {
