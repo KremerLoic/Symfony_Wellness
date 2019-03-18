@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="45ef6c44-8439-4edc-8d22-d0e364e4079a" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Controller/ImageController.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Form/ImageFormType.php" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ImgUpload/image-upload-example/.env" afterPath="$PROJECT_DIR$/../ImgUpload/image-upload-example/.env" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ImgUpload/image-upload-example/composer.json" afterPath="$PROJECT_DIR$/../ImgUpload/image-upload-example/composer.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ImgUpload/image-upload-example/composer.lock" afterPath="$PROJECT_DIR$/../ImgUpload/image-upload-example/composer.lock" />
@@ -13,14 +11,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ImgUpload/image-upload-example/templates/base.html.twig" afterPath="$PROJECT_DIR$/../ImgUpload/image-upload-example/templates/base.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ImgUpload/image-upload-example/templates/home/index.html.twig" afterPath="$PROJECT_DIR$/../ImgUpload/image-upload-example/templates/home/index.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/packages/security.yaml" afterPath="$PROJECT_DIR$/config/packages/security.yaml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/css/superlist.css" afterPath="$PROJECT_DIR$/public/assets/css/superlist.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Controller/StageController.php" afterPath="$PROJECT_DIR$/src/Controller/StageController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DataFixtures/ProvidersFixtures.php" afterPath="$PROJECT_DIR$/src/DataFixtures/ProvidersFixtures.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Entity/User.php" afterPath="$PROJECT_DIR$/src/Entity/User.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/base.html.twig" afterPath="$PROJECT_DIR$/templates/base.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/profile/surferProfile.html.twig" afterPath="$PROJECT_DIR$/templates/profile/surferProfile.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/provider/show.html.twig" afterPath="$PROJECT_DIR$/templates/provider/show.html.twig" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -146,17 +136,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="show.html.twig" pinned="false" current-in-tab="true">
+      <file leaf-file-name="show.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/provider/show.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-377">
+            <state relative-caret-position="-276">
               <caret line="30" column="97" lean-forward="false" selection-start-line="30" selection-start-column="97" selection-end-line="30" selection-end-column="97" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="provider" pinned="false" current-in-tab="false">
+      <file leaf-file-name="provider" pinned="false" current-in-tab="true">
         <entry file="das://table:/e998f7ed/5dc1cb3e-9055-4459-8c74-79768eda5cc9/wellness.provider">
           <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
             <state>
@@ -320,11 +310,6 @@
             <path>
               <item name="sample_project" type="b2602c69:ProjectViewProjectNode" />
               <item name="sample_project" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="sample_project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sample_project" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="templates" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
@@ -427,12 +412,12 @@
       <workItem from="1552334431005" duration="11958000" />
       <workItem from="1552419620376" duration="19298000" />
       <workItem from="1552465608892" duration="3000" />
-      <workItem from="1552595088543" duration="103531000" />
+      <workItem from="1552595088543" duration="103726000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="506535000" />
+    <option name="totallyTimeSpent" value="506730000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -445,6 +430,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="10" width="1649" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919255" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -453,7 +439,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919255" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18772306" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17112632" sideWeight="0.49565217" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17112632" sideWeight="0.49565217" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30304915" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32173914" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24982156" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -885,13 +871,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://table:/e998f7ed/5dc1cb3e-9055-4459-8c74-79768eda5cc9/wellness.provider">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
     <entry file="das://table:/e998f7ed/5dc1cb3e-9055-4459-8c74-79768eda5cc9/wellness.user">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
@@ -928,9 +907,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/provider/show.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-377">
+        <state relative-caret-position="-276">
           <caret line="30" column="97" lean-forward="false" selection-start-line="30" selection-start-column="97" selection-end-line="30" selection-end-column="97" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/e998f7ed/5dc1cb3e-9055-4459-8c74-79768eda5cc9/wellness.provider">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
