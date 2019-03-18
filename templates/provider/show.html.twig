@@ -12,9 +12,17 @@
                     <hr/>
                     <div class="col-md-3">
                         {% if provider.logo|length > 0 %}
-                            <img src="{{ asset('img/' ~ provider.logo) }}"/>
+                            <div class="widget">
+                                <div class="user-photo">
+                                        <img src="{{ asset('img/' ~ provider.logo) }}" alt="User Photo">
+                                </div><!-- /.user-photo -->
+                            </div><!-- /.widget -->
                         {% else %}
+                        <div class="widget">
+                            <div class="user-photo">
                             <img src="https://res.cloudinary.com/execftw/image/upload/v1542100690/no_picture.png"/>
+                            </div><!-- /.user-photo -->
+                        </div><!-- /.widget -->
                         {% endif %}
                     </div>
 
@@ -80,9 +88,9 @@
 
             {% for comment in provider.concern %}
 
-                <div class="comments">
-                    <div class="comment">
-                        <div class="comment-inner" style="margin-left:15%;">
+                <div class="comments container">
+                    <div class="comment row">
+                        <div class="comment-inner">
                             <div class="comment-header">
                                 <h2>{{ comment.surfer.name }} </h2>
                                 <span class="separator">&#8226;</span>

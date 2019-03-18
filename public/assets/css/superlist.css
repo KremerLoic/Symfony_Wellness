@@ -10281,7 +10281,7 @@ h2.widgettitle {
   background-color: #fff;
   border: 2px solid #f7f8f9;
   margin: 0px 0px 0px 120px;
-  padding: 20px;
+  padding-left:30px;
   position: relative; }
   .comment-inner:before {
     border: 20px solid transparent;

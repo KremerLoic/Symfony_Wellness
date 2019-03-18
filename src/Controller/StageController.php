@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Stage;
 use App\Form\AddStageFormType;
 use PhpParser\Node\Expr\New_;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,6 +18,7 @@ class StageController extends AbstractController
 
     /**
      * @Route("/stage/remove/{id}", name="stageRemove")
+     *  @IsGranted("ROLE_PROVIDER")
      */
     public function removeStage(Stage $stage)
     {
@@ -31,6 +33,7 @@ class StageController extends AbstractController
 
     /**
      * @Route("/stages", name="stages")
+     *
      */
     public function index()
     {
@@ -45,6 +48,7 @@ class StageController extends AbstractController
 
     /**
      * @Route("/stage/add", name="stageAdd")
+     * @IsGranted("ROLE_PROVIDER")
      */
     public function addStage(Request $request, UserInterface $user)
     {
@@ -71,6 +75,7 @@ class StageController extends AbstractController
 
     /**
      * @Route("/stage/update/{id}", name="stageEdit")
+     *  @IsGranted("ROLE_PROVIDER")
      */
     public function updateStage( Request $request , Stage $stageOne)
     {

@@ -44,7 +44,7 @@
                                         <li><a href="{{ path('stageAdd') }}">Ajouter un stage</a></li>
                                     {% endif %}
                                     {% if is_granted('ROLE_USER') %}
-                                        <li><a href="{{ path('profile') }}">{{ app.user.name }}</a></li>
+                                        <li><a href="{{ path('profile') }}">{{ app.user.email}}</a></li>
                                         <li><a href="{{ path('logout') }}">Se déconnecter</a></li>
                                     {% else %}
                                         <li><a href="{{ path('app_login') }}">Login</a></li>

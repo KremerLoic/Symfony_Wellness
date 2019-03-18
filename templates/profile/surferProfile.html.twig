@@ -14,7 +14,6 @@
                                     <div class="user-photo">
                                         <a href="#">
                                             <img src="{{ asset('img/' ~ app.user.photo) }}" alt="User Photo">
-                                            <span class="user-photo-action">Modifier l'avatar</span>
                                         </a>
                                     </div><!-- /.user-photo -->
                                 </div><!-- /.widget -->
@@ -36,6 +35,13 @@
 
 
                                     <div class="row">
+                                        <div class="form-group col-sm-12">
+                                            {{ form_errors(form.photo) }}
+                                            {{ form_label(form.photo) }}
+                                            {{ form_widget(form.photo) }}
+                                            {{ form_help(form.photo) }}
+
+                                        </div><!-- /.form-group -->
                                         <div class="form-group col-sm-6">
                                             {{ form_errors(form.firstname) }}
                                             {{ form_label(form.firstname) }}

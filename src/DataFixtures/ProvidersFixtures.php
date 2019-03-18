@@ -9,7 +9,7 @@
 namespace App\DataFixtures;
 
 
-use App\Entity\Comment;
+use App\Entity\User;
 use App\Entity\Comments;
 use App\Entity\Images;
 use App\Entity\Locality;
@@ -20,10 +20,21 @@ use App\Entity\Surfer;
 use App\Entity\ZipCode;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 
 class ProvidersFixtures extends Fixture
 {
+
+    /**
+     * @var UserPasswordEncoderInterface
+     */
+    private $encoder;
+
+    public function __construct(UserPasswordEncoderInterface $encoder)
+    {
+        $this->encoder = $encoder;
+    }
 
     public $nbServices = 10;
     public $nbProviders = 20;
@@ -34,6 +45,7 @@ class ProvidersFixtures extends Fixture
     public $nbComments = 30;
     public $nbSurfers = 20;
 
+
     public $tabProvider = array();
 
     public function load(ObjectManager $manager)
@@ -41,6 +53,8 @@ class ProvidersFixtures extends Fixture
 
 
         // Load Services fixtures
+
+
 
         for ($i = 0; $i < $this->nbServices; $i++) {
             $services = new Services();
@@ -81,6 +95,24 @@ class ProvidersFixtures extends Fixture
             $tabZipCode[] = $zipCode;
 
             $manager->persist($zipCode);
+
+        }
+        for($i = 0 ; $i < 1; $i++){
+            $admin = new User();
+            $admin->setNumber('O');
+            $admin->setStreet('Rue de la rue');
+            $admin->setBanned(false);
+            $admin->setEmail('admin@wellness.com');
+            $admin->setConfirmed(true);
+            $admin->setRegistrationDate(new \DateTime());
+            $admin->setPassword($this->encoder->encodePassword($admin, 'admin'));
+            $admin->setFailedTry('0');
+            $admin->setZipCode($tabZipCode[array_rand($tabZipCode)]);
+            $admin->setLocality($tabLocality[array_rand($tabLocality)]);
+            $admin->setRoles(['ROLE_ADMIN']);
+
+
+            $manager->persist($admin);
 
         }
 
@@ -176,7 +208,7 @@ class ProvidersFixtures extends Fixture
         for($i = 0 ; $i < $this->nbComments; $i++){
             $comments = new Comments();
             $comments->setContent('ContenuDuCommentaire_'.$i);
-        $comments->setNote(rand(1,5));
+            $comments->setNote(rand(1,5));
             $comments->setEncode(new \DateTime());
             $comments->setTitle('Titre du commentaire_'.$i);
             $comments->setProvider($tabProvider[array_rand($tabProvider)]);
@@ -184,6 +216,8 @@ class ProvidersFixtures extends Fixture
 
             $manager->persist($comments);
         }
+
+
 
 
         $manager->flush();

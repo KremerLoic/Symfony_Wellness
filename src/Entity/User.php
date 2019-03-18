@@ -11,14 +11,14 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @ORM\InheritanceType("JOINED")
  * @ORM\DiscriminatorColumn(name="type", type="string")
- * @ORM\DiscriminatorMap({ "provider" = "Provider" , "surfer" = "Surfer"})
+ * @ORM\DiscriminatorMap({"user" = "User" , "provider" = "Provider" , "surfer" = "Surfer"})
  * @UniqueEntity(
  * fields={"email"},
  * errorPath="email",
  * message="Email déjà enregistré."
  *)
  */
-abstract class User implements UserInterface
+class User implements UserInterface
 {
     /**
      * @ORM\Id()
@@ -85,6 +85,8 @@ abstract class User implements UserInterface
      * @ORM\ManyToOne(targetEntity="App\Entity\Locality", inversedBy="Adresse_Locality")
      */
     private $locality;
+
+
 
     public function getId(): ?int
     {
