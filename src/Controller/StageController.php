@@ -79,28 +79,34 @@ class StageController extends AbstractController
      */
     public function updateStage( Request $request , Stage $stageOne)
     {
+
         $stage = new Stage();
         $stage = $stageOne;
+        if ($stage->getOrganiser() === $this->getUser()) {
 
-        $form = $this->createForm(AddStageFormType::class,$stage);
-
-
-        $form->handleRequest($request);
+            $form = $this->createForm(AddStageFormType::class, $stage);
 
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($stage);
-            $em->flush();
+            $form->handleRequest($request);
 
+
+            if ($form->isSubmitted() && $form->isValid()) {
+
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($stage);
+                $em->flush();
+                return $this->redirectToRoute('stages');
+            }
+
+        } else {
             return $this->redirectToRoute('stages');
-
         }
 
 
             return $this->render('stage/addStage.html.twig', [
                 'form' => $form->createView(),
             ]);
+
 
     }
 

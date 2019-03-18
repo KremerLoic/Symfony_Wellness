@@ -9,6 +9,7 @@ security:
         App\Entity\Provider:
             algorithm: bcrypt
 
+
     always_authenticate_before_granting: true
 
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers

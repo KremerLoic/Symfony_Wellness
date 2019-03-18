@@ -1,4 +1,6 @@
 easy_admin:
+    user:
+        name_property_path: 'email'
     list:
         max_results: 15
     site_name: 'Wellness'
@@ -16,7 +18,7 @@ easy_admin:
           label: 'Providers'
           list:
             title: "Liste des providers"
-            fields: ['id','name', 'banned', 'confirmed','emailProvider', 'registration_date', 'stages']
+            fields: ['id','name', 'banned', 'confirmed','emailProvider', 'registration_date', 'stages', 'logo']
       Surfer:
            class: App\Entity\Surfer
            label: 'Surfers'
@@ -41,6 +43,13 @@ easy_admin:
           list:
             title: "Liste des commentaires des diffèrents services"
             fields: ['id','surfer','title','content','note','encode','provider']
+      Image:
+          class: App\Entity\Images
+          label: 'Images'
+          list:
+            title: "Liste complète des Images présentes sur le site"
+            fields: ['id','image','ordre','photoProvider']
+
 
 
 

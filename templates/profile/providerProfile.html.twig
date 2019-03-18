@@ -12,7 +12,11 @@
                             <div class="sidebar">
                                 <div class="widget">
                                     <div class="user-photo">
+                                        {% if app.user.logo|length > 0 %}
                                             <img src="{{ asset('img/' ~ app.user.logo) }}" alt="User Photo">
+                                            {% else %}
+                                                <img src="https://res.cloudinary.com/execftw/image/upload/v1542100690/no_picture.png"/>
+                                                {% endif %}
                                      <!---   <button class="" style="margin-left:25%"><a href=""> Changer l'image!</a></button>!--->
 
                                     </div><!-- /.user-photo -->

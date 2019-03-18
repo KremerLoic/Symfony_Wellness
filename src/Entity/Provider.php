@@ -55,15 +55,14 @@ class Provider extends User
     private $website;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Images", mappedBy="photoProvider", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Images", mappedBy="photoProvider")
      */
     private $photo;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Images",cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="App\Entity\Images", cascade={"persist","remove"})
      */
     private $logo;
-
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Services", mappedBy="Provider")
      */
@@ -75,7 +74,7 @@ class Provider extends User
     private $stages;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Comments", mappedBy="provider", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="App\Entity\Comments", mappedBy="provider", orphanRemoval=true)
      */
     private $Concern;
 

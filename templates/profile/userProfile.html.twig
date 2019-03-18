@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {{ form_start(form) }}
+    <div class="container-fluid">
+        <div class="main">
+            <div class="main-inner">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-8 col-lg-9">
+                            <div class="content">
+                                <div class="page-title">
+                                    <h1>Edition du profil</h1>
+                                </div><!-- /.page-title -->
+
+                                <div class="background-white p20 mb30">
+                                    <h3 class="page-title">
+                                        Informations personnelles
+                                    </h3>
+
+
+                                    <div class="row">
+                                        <div class="form-group col-sm-12">
+                                            {{ form_errors(form.email) }}
+                                            {{ form_label(form.email) }}
+                                            {{ form_widget(form.email) }}
+                                            {{ form_help(form.email) }}
+
+                                        </div><!-- /.form-group -->
+                                        <div class="form-group col-sm-6">
+                                            {{ form_errors(form.street) }}
+                                            {{ form_label(form.street) }}
+                                            {{ form_widget(form.street) }}
+                                            {{ form_help(form.street) }}
+
+                                        </div><!-- /.form-group -->
+
+                                        <div class="form-group col-sm-6">
+                                            {{ form_errors(form.number) }}
+                                            {{ form_label(form.number) }}
+                                            {{ form_widget(form.number) }}
+                                            {{ form_help(form.number) }}
+                                        </div><!-- /.form-group -->
+
+                                        <div class="form-group col-sm-6">
+                                            {{ form_errors(form.zipCode) }}
+                                            {{ form_label(form.zipCode) }}
+                                            {{ form_widget(form.zipCode) }}
+                                            {{ form_help(form.zipCode) }}
+                                        </div><!-- /.form-group -->
+
+                                        <div class="form-group col-sm-6">
+                                            {{ form_errors(form.locality) }}
+                                            {{ form_label(form.locality) }}
+                                            {{ form_widget(form.locality) }}
+                                            {{ form_help(form.locality) }}
+                                        </div><!-- /.form-group -->
+                                    </div><!-- /.row -->
+                                </div>
+                                {{ form_widget(form.save) }}
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{ form_end(form) }}
+
+{% endblock %}

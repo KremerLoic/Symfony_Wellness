@@ -11,19 +11,16 @@
                         </a></h3>
                     <hr/>
                     <div class="col-md-3">
-                        {% if provider.logo|length > 0 %}
-                            <div class="widget">
-                                <div class="user-photo">
-                                        <img src="{{ asset('img/' ~ provider.logo) }}" alt="User Photo">
-                                </div><!-- /.user-photo -->
-                            </div><!-- /.widget -->
-                        {% else %}
+
                         <div class="widget">
                             <div class="user-photo">
-                            <img src="https://res.cloudinary.com/execftw/image/upload/v1542100690/no_picture.png"/>
+                                {% if provider.logo|length > 0 %}
+                                    <img src="{{ asset('img/' ~ provider.logo) }}" alt="User Photo">
+                                {% else %}
+                                    <img src="https://res.cloudinary.com/execftw/image/upload/v1542100690/no_picture.png"/>
+                                {% endif %}
                             </div><!-- /.user-photo -->
                         </div><!-- /.widget -->
-                        {% endif %}
                     </div>
 
                     <div class="col-md-3">
@@ -41,22 +38,23 @@
                         <h3><u>Site Web</u> :</h3><h4>{{ provider.website }}</h4>
                     </div>
                 </div>
-                <div class="col-md-10">
-                    <hr/>
-                    <h3>Services proposés</h3>
-                    <hr/>
 
-                    {% for services in provider.services %}
-                        <div class="col-md-2">
-                            <h2><a href=" {{ path('service_show', {'id': services.id}) }}">{{ services.name }}</a></h2>
-                        </div>
-                    {% endfor %}
-                </div>
-
-                <div class="col-md-10">
-                    {% if provider.photo|length > 0 %}
-
+                {% if provider.services|length > 0 %}
+                    <div class="col-md-10">
                         <hr/>
+                        <h3>Services proposés</h3>
+                        <hr/>
+                        {% for services in provider.services %}
+                            <div class="col-md-2">
+                                <h2><a href=" {{ path('service_show', {'id': services.id}) }}">{{ services.name }}</a>
+                                </h2>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                {% if provider.photo|length > 0 %}
+                    <div class="col-md-10">
+                        <hr>
                         <h3>Pictures</h3>
                         <hr/>
                         {% for photo in provider.photo %}
@@ -64,11 +62,21 @@
                                 <img src="{{ photo }}"/>
                             </div>
                         {% endfor %}
-                    {% endif %}
-                </div>
+                    </div>
+                {% else %}
+                    <div class="col-md-10">
+                        <hr>
+                        <h3>Pictures</h3>
+                        <hr/>
+                        <div class="col-md-3">
+                            <img src="https://res.cloudinary.com/execftw/image/upload/v1542100690/no_picture.png"/>
+                        </div>
+                    </div>
+                {% endif %}
 
-                <div class="col-md-offset-2 col-md-10">
-                    {% if provider.stages|length > 0 %}
+
+                {% if provider.stages|length > 0 %}
+                    <div class="col-md-offset-2 col-md-10">
                         <hr>
                         <h3>Stages proposés</h3>
                         <hr/>
@@ -77,17 +85,22 @@
                                 <h2>{{ stage.name }}</h2>
                             </div>
                         {% endfor %}
-                    {% endif %}
-                </div>
+                    </div>
+                {% endif %}
             </div>
         </div>
+    </div>
+
+    <div class="container-fluid">
         <div class="content" style="">
-            <hr style="margin-left:9%"/>
+            <hr style="margin-left:18%;"/>
             <h3 style="margin-left:18%;" id="reviews">Comments</h3>
             <hr style="margin-left:18%;"/>
+        </div>
 
-            {% for comment in provider.concern %}
 
+        {% for comment in provider.concern %}
+            <div class="container">
                 <div class="comments container">
                     <div class="comment row">
                         <div class="comment-inner">
@@ -95,7 +108,8 @@
                                 <h2>{{ comment.surfer.name }} </h2>
                                 <span class="separator">&#8226;</span>
                                 <span class="comment-date">{{ comment.encode|date('j-m-y') }}</span>
-                                <span class="comment-title" style="margin-left:5%; font-weight:900;">{{ comment.title }}</span>
+                                <span class="comment-title"
+                                      style="margin-left:5%; font-weight:900;">{{ comment.title }}</span>
                                 <span class="note" style="margin-left:5%; font-weight:900;">
                                 {% set star = comment.note %}
                                     {% for i in range(1, star) %}
@@ -114,50 +128,48 @@
                                 </div><!-- /.comment-content -->
                             </div><!-- /.comment-content-wrapper -->
                         </div><!-- /.comment-inner -->
-                    </div><!-- /.comment -->
+                    </div>
+                </div>
+            </div><!-- /.comments -->
+        {% endfor %}
+    </div>
+    {% if is_granted('ROLE_SURFER') %}
+        {{ form_start(form) }}
+        <h2 style="margin-left:15%">Write a Comment</h2>
+        <div class="row" style="margin-left:15%;">
 
-                </div><!-- /.comments -->
-            {% endfor %}
-            {% if is_granted('ROLE_SURFER') %}
-                {{ form_start(form) }}
-                <h2 style="margin-left:15%">Write a Comment</h2>
-                <div class="row" style="margin-left:15%;">
+            <div class="form-group col-sm-4">
 
-                    <div class="form-group col-sm-4">
+                {{ form_errors(form.title) }}
+                {{ form_label(form.title) }}
+                {{ form_widget(form.title) }}
+                {{ form_help(form.title) }}
+            </div><!-- /.col-sm-12 -->
 
-                        {{ form_errors(form.title) }}
-                        {{ form_label(form.title) }}
-                        {{ form_widget(form.title) }}
-                        {{ form_help(form.title) }}
-                    </div><!-- /.col-sm-12 -->
+            <div class="form-group col-sm-4">
+                {{ form_errors(form.note) }}
+                {{ form_label(form.note) }}
+                {{ form_widget(form.note) }}
+                {{ form_help(form.note) }}
 
-                    <div class="form-group col-sm-4">
-                        {{ form_errors(form.note) }}
-                        {{ form_label(form.note) }}
-                        {{ form_widget(form.note) }}
-                        {{ form_help(form.note) }}
+            </div><!-- /.col-sm-4 -->
 
-                    </div><!-- /.col-sm-4 -->
+            <div class="form-group col-sm-8">
+                {{ form_errors(form.content) }}
+                {{ form_label(form.content) }}
+                {{ form_widget(form.content) }}
+                {{ form_help(form.content) }}
+            </div><!-- /.col-sm-4 -->
 
-                    <div class="form-group col-sm-12">
-                        {{ form_errors(form.content) }}
-                        {{ form_label(form.content) }}
-                        {{ form_widget(form.content) }}
-                        {{ form_help(form.content) }}
-                    </div><!-- /.col-sm-4 -->
+            <div class="col-sm-12">
+                {{ form_widget(form.save) }}
+            </div><!-- /.col-sm-4 -->
 
-                    <div class="col-sm-4">
-                        {{ form_widget(form.save) }}
-                    </div><!-- /.col-sm-4 -->
-
-                </div><!-- /.row -->
-                {{ form_end(form) }}
-            {% endif %}
-
-        </div><!-- /.post -->
+        </div><!-- /.row -->
+        {{ form_end(form) }}
+    {% endif %}
 
 
-    </div><!-- /.content -->
 
 
 

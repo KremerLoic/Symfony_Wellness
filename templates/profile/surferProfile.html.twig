@@ -13,7 +13,11 @@
                                 <div class="widget">
                                     <div class="user-photo">
                                         <a href="#">
-                                            <img src="{{ asset('img/' ~ app.user.photo) }}" alt="User Photo">
+                                            {% if app.user.photo|length > 0 %}
+                                                <img src="{{ asset('img/' ~ app.user.photo) }}" alt="User Photo">
+                                            {% else %}
+                                                <img src="https://res.cloudinary.com/execftw/image/upload/v1542100690/no_picture.png"/>
+                                            {% endif %}
                                         </a>
                                     </div><!-- /.user-photo -->
                                 </div><!-- /.widget -->

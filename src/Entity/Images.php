@@ -20,7 +20,6 @@ class Images
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="Please, upload the image as an image file")
-
      */
     private $image;
 
@@ -33,7 +32,6 @@ class Images
      * @ORM\ManyToOne(targetEntity="App\Entity\Provider", inversedBy="photo")
      */
     private $photoProvider;
-
 
 
     public function __toString()
