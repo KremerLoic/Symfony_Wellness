@@ -1,3 +1,6 @@
+<h2>- Compte Admin : User:  admin@wellness.com  - Password : admin</h2>
+
+
 # Symfony_Wellness
 2018-2019 Symfony Project : Wellness website
 
@@ -5,7 +8,7 @@
 
 - Ajout d'un service pour le Mailer + Mails personnalisés 
 - Ajout du panel admin. 
-<h2>- Compte Admin : User:  admin@wellness.com  - Password : admin</h2>
+
 
 - Ajout de la possibilitée de ban via le panel admin.
 - Ajout du systeme d'upload via Services + EventListener ( Pour la photo de profil User & Surfer ) 
@@ -13,8 +16,6 @@
 - Fix du système de stages : désormais uniquement modifiable ou supprimable par le Provider organisateur et/ou par l'admin via le panel Admin.
 - Ajout du profil de l'Admin
 - Fix de certains bugs d'affichage dans le show Provider
-
-
 
 
 // TODO : Upload des images pour les services des providers 
