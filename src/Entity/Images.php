@@ -24,12 +24,13 @@ class Images
     private $image;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $ordre;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Provider", inversedBy="photo")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Provider", inversedBy="photo", cascade={"persist"})
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $photoProvider;
 

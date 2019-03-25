@@ -90,49 +90,50 @@
             </div>
         </div>
     </div>
+    {% if provider.concern|length > 0 %}
+        <div class="container-fluid">
+            <div class="content" style="">
+                <hr style="margin-left:18%;"/>
+                <h3 style="margin-left:18%;" id="reviews">Comments</h3>
+                <hr style="margin-left:18%;"/>
+            </div>
 
-    <div class="container-fluid">
-        <div class="content" style="">
-            <hr style="margin-left:18%;"/>
-            <h3 style="margin-left:18%;" id="reviews">Comments</h3>
-            <hr style="margin-left:18%;"/>
-        </div>
-
-
-        {% for comment in provider.concern %}
-            <div class="container">
-                <div class="comments container">
-                    <div class="comment row">
-                        <div class="comment-inner">
-                            <div class="comment-header">
-                                <h2>{{ comment.surfer.name }} </h2>
-                                <span class="separator">&#8226;</span>
-                                <span class="comment-date">{{ comment.encode|date('j-m-y') }}</span>
-                                <span class="comment-title"
-                                      style="margin-left:5%; font-weight:900;">{{ comment.title }}</span>
-                                <span class="note" style="margin-left:5%; font-weight:900;">
+            {% for comment in provider.concern %}
+                <div class="container">
+                    <div class="comments container">
+                        <div class="comment row">
+                            <div class="comment-inner">
+                                <div class="comment-header">
+                                    <h2>{{ comment.surfer.name }} </h2>
+                                    <span class="separator">&#8226;</span>
+                                    <span class="comment-date">{{ comment.encode|date('j-m-y') }}</span>
+                                    <span class="comment-title"
+                                          style="margin-left:5%; font-weight:900;">{{ comment.title }}</span>
+                                    <span class="note" style="margin-left:5%; font-weight:900;">
                                 {% set star = comment.note %}
-                                    {% for i in range(1, star) %}
-                                        <i class="fa fa-star"></i>
-                                    {% endfor %}
+                                        {% for i in range(1, star) %}
+                                            <i class="fa fa-star"></i>
+                                        {% endfor %}
                                 </span>
 
-                                <div class="comment-reply">
-                                </div><!-- /.comment-reply -->
-                            </div><!-- /.comment-header -->
+                                    <div class="comment-reply">
+                                    </div><!-- /.comment-reply -->
+                                </div><!-- /.comment-header -->
 
-                            <div class="comment-content-wrapper">
-                                <div class="comment-content">
-                                    <p>{{ comment.content }}</p>
+                                <div class="comment-content-wrapper">
+                                    <div class="comment-content">
+                                        <p>{{ comment.content }}</p>
 
-                                </div><!-- /.comment-content -->
-                            </div><!-- /.comment-content-wrapper -->
-                        </div><!-- /.comment-inner -->
+                                    </div><!-- /.comment-content -->
+                                </div><!-- /.comment-content-wrapper -->
+                            </div><!-- /.comment-inner -->
+                        </div>
                     </div>
-                </div>
-            </div><!-- /.comments -->
-        {% endfor %}
-    </div>
+                </div><!-- /.comments -->
+            {% endfor %}
+        </div>
+    {% endif %}
+
     {% if is_granted('ROLE_SURFER') %}
         {{ form_start(form) }}
         <h2 style="margin-left:15%">Write a Comment</h2>

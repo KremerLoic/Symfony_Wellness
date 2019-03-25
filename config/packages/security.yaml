@@ -52,8 +52,6 @@ security:
     access_control:
 
          - { path: ^/profile, roles: [ROLE_SURFER, ROLE_PROVIDER,ROLE_ADMIN]}
-         - { path: ^/providers, roles: [ROLE_SURFER, ROLE_PROVIDER, ROLE_ADMIN]}
-         - { path: ^/provider/*, roles: [ROLE_SURFER, ROLE_PROVIDER, ROLE_ADMIN]}
          - { path: ^/admin/*, roles: [ROLE_ADMIN]}
 
 

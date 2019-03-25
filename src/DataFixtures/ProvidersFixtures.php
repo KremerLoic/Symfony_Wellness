@@ -116,21 +116,23 @@ class ProvidersFixtures extends Fixture
 
         }
 
+
+
         // Load Providers Fixtures
         for ($i = 0; $i < $this->nbProviders; $i++) {
             $provider = new Provider();
             $provider->setNumber('3');
             $provider->setStreet('street');
             $provider->setBanned(false);
-            $provider->setEmail('loickremer882@gmail.com_' . $i);
+            $provider->setEmail('loickremer'.$i.'@gmail.com');
             $provider->setConfirmed(true);
             $provider->setRegistrationDate(new \DateTime());
             $provider->setPassword('passwordSecure');
             $provider->setFailedTry('0');
-            $provider->setEmailProvider('emailProvider_' . $i);
+            $provider->setEmailProvider('emailProvider'.$i.'@gmail.com');
             $provider->setName('ProviderName_' . $i);
-            $provider->setTelNumber('ProviderTelNumber_' . $i);
-            $provider->setTvaNumber('ProviderTvaNumber_' . $i);
+            $provider->setTelNumber('045678765' . $i);
+            $provider->setTvaNumber('09876543218765' . $i);
             $provider->setWebsite('ProviderWebsite_' . $i);
             $provider->setZipCode($tabZipCode[array_rand($tabZipCode)]);
             $provider->setLocality($tabLocality[array_rand($tabLocality)]);
@@ -152,18 +154,22 @@ class ProvidersFixtures extends Fixture
 
 
 
+
+
         // Load Images fixtures
         for ($i = 0; $i < $this->nbImages; $i++) {
 
             $image = new Images();
             $image->setImage('https://www.stevensegallery.com/200/150');
-            $image->setOrdre(1);;
+            $image->setPhotoProvider($tabProvider[array_rand($tabProvider)]);
+
 
             $manager->persist($image);
         }
 
 
 
+        // load Stages fixtures
         for ($i = 0; $i < $this->nbStages; $i++){
 
             $stage = new Stage();
@@ -181,17 +187,17 @@ class ProvidersFixtures extends Fixture
 
         }
 
-
+        // load surfers fixtures
         for ($i=0 ; $i < $this->nbSurfers; $i++ ){
 
             $surfer = new Surfer();
             $surfer->setFirstname('SurferFirstName_'.$i);
             $surfer->setName('SurferName_'.$i);
             $surfer->setNewsletter(true);
-            $surfer->setNumber('Number_'.$i);
+            $surfer->setNumber('7'.$i);
             $surfer->setStreet('Rue_'.$i);
             $surfer->setBanned(false);
-            $surfer->setEmail('surferEmail@hotmail.com_'.$i);
+            $surfer->setEmail('surferEmail'.$i.'@hotmail.com');
             $surfer->setConfirmed(true);
             $surfer->setRegistrationDate(new \DateTime());
             $surfer->setPassword('Password_'.$i);
@@ -205,6 +211,8 @@ class ProvidersFixtures extends Fixture
 
         }
 
+
+        // load comments fixtures
         for($i = 0 ; $i < $this->nbComments; $i++){
             $comments = new Comments();
             $comments->setContent('ContenuDuCommentaire_'.$i);

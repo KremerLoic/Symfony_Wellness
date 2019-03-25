@@ -17,7 +17,7 @@ class CommentController extends AbstractController
     /**
      * @Route("/provider/{id}", name="comment")
      */
-    public function index(UserInterface $user, $id, Request $request)
+    public function index( $id, Request $request)
     {
         $repository = $this->getDoctrine()->getRepository(Provider::class);
         $provider = $repository->find($id);
@@ -32,7 +32,7 @@ class CommentController extends AbstractController
             $form->handleRequest($request);
             $comment->setEncode(new \DateTime());
             $comment->setProvider($provider);
-            $comment->setSurfer($user);
+            $comment->setSurfer($this->getUser());
 
 
 

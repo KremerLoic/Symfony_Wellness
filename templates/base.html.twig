@@ -30,7 +30,7 @@
                 <div class="container">
                     <div class="header-inner">
                         <div class="header-logo">
-                            <a href="../index">
+                            <a href="{{ path('index') }}">
                                 <span>Relaxation</span>
                             </a>
                         </div><!-- /.header-logo -->
@@ -44,6 +44,9 @@
                                         <li><a href="{{ path('stageAdd') }}">Ajouter un stage</a></li>
                                     {% endif %}
                                     {% if is_granted('ROLE_USER') %}
+                                        {% if is_granted('ROLE_ADMIN') %}
+                                            <li><a href="{{ path('easyadmin') }}">Panel Administrateur</a></li>
+                                            {% endif %}
                                         <li><a href="{{ path('profile') }}">{{ app.user.email}}</a></li>
                                         <li><a href="{{ path('logout') }}">Se déconnecter</a></li>
                                     {% else %}

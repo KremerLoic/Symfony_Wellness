@@ -73,7 +73,6 @@ class ImageUploadListener
         if ($file instanceof UploadedFile) {
             $fileName = $this->uploader->upload($file);
             $entity->setImage($fileName);
-            $entity->setOrdre(1);
 
 
         } elseif ($file instanceof File) {
@@ -92,25 +91,26 @@ class ImageUploadListener
             $arrayKey = 'logo';
         } else if ($entity instanceof Surfer) {
             $arrayKey = 'photo';
-        }else{
+        } else {
             return;
         }
 
         $getter = 'get' . ucfirst($arrayKey);
-        $setter = 'get' . ucfirst($arrayKey);
+        $setter = 'set' . ucfirst($arrayKey);
 
         // on récupère les changements
         $changes = $args->getEntityChangeSet();
+
         // si il y a un changement à la propriété `profilePicture`
         if (array_key_exists($arrayKey, $changes)) {
-
-
-            // on récupère l'"ntité existant avant le changement
+            // on récupère l'entité existante avant le changement
             $previousImage = $changes[$arrayKey][0];
         }
-        // si la nouvelle version du User n'a plus de profilePicture
+        // si la nouvelle version du User n'a plus de logo
         if (is_null($entity->$getter())) {
             // on lui réinjecte l'image précédente
+            dump($previousImage);
+            dump($entity->$getter());
             $entity->$setter($previousImage);
         } else {
             // si une nouvelle Image est uploadée

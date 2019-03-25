@@ -136,7 +136,6 @@
     <column id="60" parent="32" name="ordre">
       <Position>4</Position>
       <DataType>int(11)|0</DataType>
-      <NotNull>1</NotNull>
     </column>
     <index id="61" parent="32" name="IDX_E01FBE6A4C44476">
       <ColNames>photo_provider_id</ColNames>

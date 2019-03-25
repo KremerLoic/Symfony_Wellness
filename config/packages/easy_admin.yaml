@@ -18,13 +18,13 @@ easy_admin:
           label: 'Providers'
           list:
             title: "Liste des providers"
-            fields: ['id','name', 'banned', 'confirmed','emailProvider', 'registration_date', 'stages', 'logo']
+            fields: ['id','name', 'banned', 'confirmed','emailProvider', 'registration_date', 'stages','photo','logo', ]
       Surfer:
            class: App\Entity\Surfer
            label: 'Surfers'
            list:
               title: "Liste des surfers"
-              fields: ['id','name','newsletter', 'banned', 'confirmed','email', 'registration_date']
+              fields: ['id','name','newsletter', 'banned', 'confirmed','email', 'photo','registration_date']
       Stage:
           class: App\Entity\Stage
           label: 'Stages'
@@ -48,7 +48,17 @@ easy_admin:
           label: 'Images'
           list:
             title: "Liste complète des Images présentes sur le site"
-            fields: ['id','image','ordre','photoProvider']
+            fields: ['id','image','ordre','photoProvider',]
+      Locality:
+          class: App\Entity\Locality
+          label: 'Localités'
+          list:
+            title: "Liste complète des localités disponibles le site"
+      ZipCode:
+          class: App\Entity\ZipCode
+          label: 'Code Postaux'
+          list:
+            title: "Liste complète des code postaux disponibles le site"
 
 
 

@@ -26,7 +26,6 @@ class Provider extends User
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Regex("/^[a-zA-Z ]*$/")
      */
     private $name;
 
@@ -55,12 +54,13 @@ class Provider extends User
     private $website;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Images", mappedBy="photoProvider")
+     * @ORM\OneToMany(targetEntity="App\Entity\Images", mappedBy="photoProvider", orphanRemoval=true)
      */
     private $photo;
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Images", cascade={"persist","remove"})
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $logo;
     /**

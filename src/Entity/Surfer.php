@@ -16,13 +16,11 @@ class Surfer extends User
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Regex("/^[a-zA-Z ]*$/")
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Regex("/^[a-zA-Z ]*$/")
      */
     private $name;
 
@@ -43,7 +41,8 @@ class Surfer extends User
     private $draft;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Images", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="App\Entity\Images", cascade={"persist","remove"})
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $photo;
 

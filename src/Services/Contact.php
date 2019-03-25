@@ -51,7 +51,7 @@ class Contact
             $template = 'emails/confirm.html.twig';
         }
 
-        $message = (new \Swift_Message('You got Mail!'))
+        $message = (new \Swift_Message('Relaxation Wellness'))
             ->setFrom('loickremer882@gmail.com')
             ->setTo($user->getUsername())
             ->setBody(

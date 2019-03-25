@@ -1,5 +1,24 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-<h1> Merci de vous être enregistré</h1>
-<h1>Veuillez confirmer l'inscription via votre boite mail</h1>
+<div class="container-fluid">
+    <div class="main">
+        <div class="main-inner">
+            <div class="container">
+                <div class="content">
+                    <div class="row">
+                        <div class="col-sm-5 col-sm-offset-3">
+                            <div class="page-title">
+                                <h1>Confirmation en attente</h1>
+                            </div><!-- /.page-title -->
+                            <h2>Veuillez confirmer l'inscription via votre boite mail</h2>
+                            <a href="{{ path('index') }}">Retour à la page d'accueil</a>
+                        </div>
+                    </div>
+                </div><!-- /.content -->
+            </div><!-- /.container -->
+        </div><!-- /.main-inner -->
+    </div><!-- /.main -->
+</div>
+
+
 {% endblock %}

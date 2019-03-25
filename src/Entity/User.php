@@ -35,7 +35,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Regex("/^[a-zA-Z ]*$/")
+     * @Assert\Regex("/^[a-z\sA-Z\s0-9\s_]+$/")
      */
     private $street;
 
@@ -77,12 +77,14 @@ class User implements UserInterface
     private $failed_try;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\ZipCode", inversedBy="Adresse_CP")
+     * @ORM\ManyToOne(targetEntity="App\Entity\ZipCode", inversedBy="Adresse_CP", cascade={"persist"})
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $zipCode;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Locality", inversedBy="Adresse_Locality")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Locality", inversedBy="Adresse_Locality", cascade={"persist"})
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $locality;
 
