@@ -11,11 +11,14 @@
 
 
 - Ajout de la possibilitée de ban via le panel admin.
-- Ajout du systeme d'upload via Services + EventListener ( Pour la photo de profil User & Surfer ) 
+- Ajout du systeme d'upload via Services + EventListener ( Pour la photo de profil User & Surfer ) + Update logos OK 
 - Ajout de la photo de profil visible par les surfers/providers dans les profils des providers.
 - Fix du système de stages : désormais uniquement modifiable ou supprimable par le Provider organisateur et/ou par l'admin via le panel Admin.
 - Ajout du profil de l'Admin
 - Fix de certains bugs d'affichage dans le show Provider
+- Fix fiches providers désormais visible pour les utilisateurs non connectés
 
 
-// TODO : Upload des images pour les services des providers 
+// TODO : ////
+
+
